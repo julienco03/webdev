@@ -1,0 +1,15 @@
+html {
+  background-color: blue;
+  color: white;
+}
+h1 {
+  font-size: 70px;
+  text-decoration: underline;
+}
+p {
+  color: red;
+}
+span {
+  color: white;
+  font-weight: bold;
+}
