@@ -1,0 +1,12 @@
+.rot {
+  color: red;
+}
+.wichtig {
+  font-weight: bold;
+}
+p.rot {
+  text-decoration: underline;
+}
+span.wichtig {
+  background-color: grey;
+}
