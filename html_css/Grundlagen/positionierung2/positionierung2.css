@@ -1,0 +1,24 @@
+body {
+  height: 10000px;
+}
+#fixed_div {
+  width: 200px;
+  height: 200px;
+  background-color: grey;
+  position: fixed; /* wird am viewport (sichtbarer Bereich) ausgerichtet */
+  bottom: 0;
+  right: 0;
+}
+#sticky_div {
+  width: 200px;
+  height: 200px;
+  background-color: red;
+  position: sticky;
+  top: 80px;
+  margin-top: 350px;
+}
+span {
+  position: static; /* default */
+  top: 300px; /* wird ignoriert */
+  left: 200px; /* wird ebenfalls ignoriert */
+}
