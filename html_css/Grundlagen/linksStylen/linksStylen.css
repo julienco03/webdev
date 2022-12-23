@@ -1,0 +1,20 @@
+/* Merkspruch für Reihenfolge der Attribute:
+    LoVe, Fears, HAte
+    LoVe HAte
+*/
+
+a:link {
+  color: #000;
+}
+a:visited {
+  color: grey;
+}
+/* a:focus {
+
+} */
+a:hover {
+  color: blue;
+}
+a:active {
+  color: red;
+}

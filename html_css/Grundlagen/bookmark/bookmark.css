@@ -1,0 +1,9 @@
+div {
+  height: 300px;
+  width: 300px;
+  background-color: #00f;
+  margin-bottom: 20px;
+}
+#target {
+  border: 20px solid #f00;
+}
