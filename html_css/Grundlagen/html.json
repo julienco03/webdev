@@ -1,0 +1,8 @@
+{
+  "HTML-Grundgerüst": {
+    "prefix": "html",
+    "body": [
+      "<!DOCTYPE html>\n<html lang=\"de\">\n\t<head>\n\t\t<meta charset=\"UTF-8\" />\n\t\t<title>$1</title>\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"$2\" />\n\t</head>\n\t<body>$0</body>\n</html>"
+    ]
+  }
+}
