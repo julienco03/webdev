@@ -1,10 +1,69 @@
-html {
-  font-size: 16px;
-}
+/* === FARBEN === */
+
+/*
+Blau:       #1F4E8C
+Dunkelgrau: #3D3F45
+Hellgrau:   #E5E5E5
+Rot:        #A62C21
+*/
+
 body {
   font-family: "Raleway", "Lato", "Helvetica Neue", "Arial", sans-serif;
   margin: 0;
+  font-size: 16px;
 }
 * {
   box-sizing: border-box;
+}
+
+/* NAVIGATIONSLEISTE */
+.header-nav {
+  width: 100%;
+  height: 50px;
+  background-color: #3d3f45;
+  position: relative;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.header-nav > a > img {
+  height: 30px;
+  width: auto;
+  position: absolute;
+  left: 2rem;
+  top: 0.55rem;
+}
+.header-nav > ul {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 2rem;
+  height: 100%;
+}
+.header-nav > ul > li {
+  display: inline-block;
+  height: 100%;
+  padding: 0 0.4rem 0 0.4rem;
+}
+.header-nav > ul > li > a:link {
+  color: #fff;
+  text-decoration: none;
+}
+.header-nav > ul > li > a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+.header-nav > ul > li > a:hover {
+  color: #e5e5e5;
+  text-decoration: none;
+}
+.header-nav > ul > li > a:active {
+  color: #e5e5e5;
+  text-decoration: none;
+}
+.active {
+  background-color: #a62c21;
+}
+.header-nav > ul > li > a {
+  margin-top: 0.8rem;
+  display: inline-block;
 }
