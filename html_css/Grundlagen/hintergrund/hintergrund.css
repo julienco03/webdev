@@ -1,0 +1,68 @@
+div {
+  width: 600px;
+  height: 600px;
+  border: 2px solid grey;
+  margin-bottom: 20px;
+}
+#test01 {
+  background-color: #4c9763;
+}
+#test02 {
+  background-image: url("hintergrund.png");
+}
+#test03 {
+  background-image: url("hintergrund.png");
+  background-repeat: repeat-x;
+}
+#test04 {
+  background-image: url("hintergrund.png");
+  background-repeat: repeat-y;
+}
+#test05 {
+  background-image: url("hintergrund.png");
+  background-repeat: no-repeat;
+}
+#test06 {
+  background-image: url("hintergrund.png");
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+#test07 {
+  background-image: url("hintergrund.png");
+  background-repeat: no-repeat;
+  background-position: 100px 200px;
+}
+#test08 {
+  background-image: url("hintergrund.png");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+#test09 {
+  background-image: url("hintergrund.png");
+  background-repeat: no-repeat;
+  background-position: right 200px bottom 100px;
+}
+#test10 {
+  background-image: url("hintergrund.png");
+  background-attachment: fixed;
+}
+
+/*
+BISHER:
+
+background-color:
+background-image:
+background-repeat:
+background-attachment:
+background-position:
+
+JETZT:
+
+background: color image repeat attachment position
+
+Werte können auch weggelassen werden!
+*/
+
+#test11 {
+  background: #11ff99 url("hintergrund.png") repeat-y fixed 20px 30px;
+}
