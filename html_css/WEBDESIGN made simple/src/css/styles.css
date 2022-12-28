@@ -67,3 +67,19 @@ body {
   margin-top: 0.8rem;
   display: inline-block;
 }
+
+/* === HEADER-BANNER === */
+.header-banner {
+  width: 100%;
+  height: 0;
+  padding-top: 20.83%; /* 400 : 1920 * 100 = 20.83% */
+  background: url("../img/hintergrund.jpg") no-repeat;
+  background-size: contain;
+}
+.header-banner-klein {
+  width: 100%;
+  height: 0;
+  padding-top: 15.625%;
+  background: url("../img/hintergrund-klein.jpg") no-repeat;
+  background-size: contain;
+}
