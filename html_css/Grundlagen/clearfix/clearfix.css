@@ -1,0 +1,17 @@
+.container {
+  background-color: grey;
+}
+img {
+  width: 200px;
+  height: 200px;
+  float: right;
+}
+p {
+  background-color: red;
+  margin-top: 0;
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: block;
+}

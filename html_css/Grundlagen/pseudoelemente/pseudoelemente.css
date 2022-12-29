@@ -1,0 +1,16 @@
+#test {
+  width: 400px;
+  height: 400px;
+  background-color: grey;
+}
+#test::before {
+  /* Das Attribut 'content' gibt es nur für Pseudoelemente*/
+  content: "Ich bin das Pseudoelement 'before'.";
+  display: block;
+  background-color: orange;
+}
+#test::after {
+  content: "Ich bin das Pseudoelement 'after'.";
+  display: block;
+  background-color: aquamarine;
+}

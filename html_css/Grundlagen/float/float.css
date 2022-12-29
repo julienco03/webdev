@@ -1,0 +1,9 @@
+p {
+  background-color: gray;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
