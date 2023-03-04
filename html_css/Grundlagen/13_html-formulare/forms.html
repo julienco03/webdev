@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Forms</title>
+  </head>
+  <body>
+    <form action="forms.html" method="get">
+      <input type="text" name="name" placeholder="Dein Name" /><br /><br />
+      <input type="radio" name="geschlecht" value="m" checked />Männlich
+      <input type="radio" name="geschlecht" value="w" />Weiblich<br /><br />
+      <input
+        type="mail"
+        name="email"
+        placeholder="Deine E-Mail-Adresse"
+      /><br /><br />
+      <input type="password" placeholder="Dein Passwort" /><br /><br />
+      <button type="submit" value="submit">Bestätigen</button>
+    </form>
+    <br /><br /><br /><br />
+
+    <!-- Bei sensiblen Daten immer 'post' benutzen!
+         Die Daten sind jedoch noch immer sichtbar (siehe Entwicklermodus) -->
+    <form action="forms.html" method="post">
+      <input type="text" name="name" placeholder="Dein Name" /><br /><br />
+      <input type="radio" name="geschlecht" value="m" checked />Männlich
+      <input type="radio" name="geschlecht" value="w" />Weiblich<br /><br />
+      <input
+        type="mail"
+        name="email"
+        placeholder="Deine E-Mail-Adresse"
+      /><br /><br />
+      <input type="password" placeholder="Dein Passwort" /><br /><br />
+      <button type="submit" value="submit">Bestätigen</button>
+    </form>
+  </body>
+</html>

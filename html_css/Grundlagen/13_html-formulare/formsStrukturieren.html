@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formulare Strukturieren</title>
+    <style>
+      fieldset {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="./forms.html" method="get">
+      <fieldset>
+        <legend>Personendaten</legend>
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" />
+        <br /><br />
+        <fieldset>
+          <legend>Geschlecht</legend>
+          <label for="männlich">Männlich</label>
+          <input
+            type="radio"
+            name="geschlecht"
+            id="männlich"
+            value="m"
+            checked
+          />
+          <label for="weiblich">Weiblich</label>
+          <input type="radio" name="geschlecht" id="weiblich" value="w" />
+          <br /><br />
+        </fieldset>
+      </fieldset>
+      <br />
+      <fieldset>
+        <legend>Login-Daten</legend>
+        <label for="email">E-Mail:</label>
+        <input type="mail" name="email" id="email" /><br /><br />
+        <label for="passwort">Passwort:</label>
+        <input type="password" id="passwort" /><br /><br />
+      </fieldset>
+      <br /><br />
+      <button type="submit" value="submit">Bestätigen</button>
+    </form>
+  </body>
+</html>

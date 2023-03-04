@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Files</title>
+  </head>
+  <body>
+    <!-- 'get' geht nicht bei Datei-Inputs -->
+    <form action="files.html" method="post" enctype="multipart/form-data">
+      <fieldset>
+        <legend>Datei-Upload</legend>
+        <label for="datei">Datei hochladen:</label>
+        <input type="file" name="datei" id="datei" />
+      </fieldset>
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
