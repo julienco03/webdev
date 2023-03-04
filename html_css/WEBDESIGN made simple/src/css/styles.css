@@ -109,7 +109,7 @@ body {
 }
 .mobile-nav-dropdown {
   position: relative;
-  /*display: inline-block;*/
+  float: right;
 }
 .mobile-nav-content {
   position: absolute;
