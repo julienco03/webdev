@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Das Form-Attribut</title>
+  </head>
+  <body>
+    <form action="formAttribut.html" method="get" id="formular">
+      <label for="name">Benutzername:</label>
+      <input type="text" id="name" name="name" /><br /><br />
+
+      <label for="email">E-Mail:</label>
+      <input type="email" id="email" name="email" /><br /><br />
+
+      <button type="submit">Absenden!</button>
+    </form>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum neque
+      harum ullam in quia ea quos soluta est suscipit. Aliquid incidunt porro
+      minima quo repudiandae et hic illum in aliquam?
+    </p>
+
+    <label for="passwort">Passwort:</label>
+    <input type="password" name="passwort" id="passwort" form="formular" />
+  </body>
+</html>

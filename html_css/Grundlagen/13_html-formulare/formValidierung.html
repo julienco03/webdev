@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formular-Validierung</title>
+  </head>
+  <body>
+    <form action="formValidierung.html" method="get">
+      <label for="email">E-Mail:</label>
+      <input
+        type="text"
+        name="email"
+        id="email"
+        pattern="[^\s]{5,20}@[a-zA-Z]{1,10}\.[a-zA-Z]{2,5}"
+      />
+      <button type="submit" name="submit" id="submit">Bestätigen</button>
+    </form>
+  </body>
+</html>
