@@ -26,6 +26,15 @@ body {
 .active {
   background-color: #a62c21 !important;
 }
+.wichtiger-text {
+  font-weight: bold;
+}
+.btn-typ-1 {
+  background-color: #a62c21;
+  border: 2px solid #a62c21;
+  color: #fff;
+  padding: 0.4rem 0.6rem;
+}
 
 /* === NAVIGATIONSLEISTE === */
 .header-nav {
@@ -148,6 +157,31 @@ body {
   background-size: contain;
 }
 
+/* === NEWSLETTER-BEREICH === */
+.newsletter-bereich {
+  width: 100%;
+  background-color: #3d3f45;
+}
+#nb-werbetext {
+  color: #fff;
+  font-size: 1.2rem;
+}
+.nb-email-input {
+  width: 75%;
+  height: 35px;
+  border: 2px solid #fff;
+  padding: 0.4rem;
+}
+#nb-btn {
+  height: 35px;
+}
+#nb-form {
+  margin-top: 0.7rem;
+  float: right;
+  width: 100%;
+  text-align: right;
+}
+
 /* === GRID-SYSTEM (Sichtbarkeit) === */
 /*
 .border,
@@ -191,6 +225,9 @@ p {
 .col-3 {
   width: 50%;
 }
+.col-4 {
+  width: 66.666%;
+}
 .col-6 {
   width: 100%;
 }
@@ -209,6 +246,9 @@ p {
   .col-3 {
     width: 100%;
   }
+  .col-4 {
+    width: 100%;
+  }
 }
 @media (max-width: 480px) {
   .col-1 {
@@ -218,6 +258,9 @@ p {
     width: 100%;
   }
   .col-3 {
+    width: 100%;
+  }
+  .col-4 {
     width: 100%;
   }
 }

@@ -61,5 +61,37 @@
 
     <!-- HEADER-BANNER -->
     <header class="header-banner"></header>
+
+    <!-- NEWSLETTER-BEREICH -->
+    <section class="newsletter-bereich">
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
+            <p id="nb-werbetext">
+              <span class="wichtiger-text">
+                Melde dich jetzt für den Newsletter an und verpasse nichts mehr!
+              </span>
+              Wir schicken dir nur interessante Informationen.
+            </p>
+          </div>
+          <div class="col-2 clearfix">
+            <form id="nb-form" action="index.html" method="post">
+              <label for="nb-email" class="screenreader"></label>
+              <input
+                type="text"
+                id="nb-email"
+                name="email"
+                class="nb-email-input"
+                placeholder="Deine E-Mail-Adresse"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              />
+              <button id="nb-btn" class="btn-typ-1" type="submit">
+                Jetzt anmelden!
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
