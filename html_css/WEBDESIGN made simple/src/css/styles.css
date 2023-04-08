@@ -167,7 +167,7 @@ body {
   font-size: 1.2rem;
 }
 .nb-email-input {
-  width: 75%;
+  width: 78%;
   height: 35px;
   border: 2px solid #fff;
   padding: 0.4rem;
@@ -180,6 +180,47 @@ body {
   float: right;
   width: 100%;
   text-align: right;
+}
+
+@media (max-width: 1822px) {
+  .nb-email-input {
+    width: 70%;
+  }
+}
+
+@media (max-width: 1822px) {
+  .nb-email-input {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  #nb-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  #nb-werbetext {
+    display: none;
+  }
+
+  #nb-form {
+    margin-top: 0;
+  }
+
+  .newsletter-bereich .col-4 {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .nb-email-input {
+    height: 25px;
+  }
+
+  #nb-btn {
+    height: 25px;
+    padding: 0.1rem;
+  }
 }
 
 /* === GRID-SYSTEM (Sichtbarkeit) === */
