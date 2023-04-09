@@ -14,8 +14,8 @@
   </head>
   <body>
     <!-- NAVIGATIONSLEISTE -->
-    <nav class="header-nav">
-      <div class="container desktop-nav">
+    <nav id="header-nav">
+      <div class="container" id="desktop-nav">
         <div class="row">
           <div class="col-6">
             <a href="index.html">
@@ -34,7 +34,7 @@
         </div>
       </div>
       <!-- NAVIGATIONSLEISTE (MOBIL) -->
-      <div class="container mobile-nav">
+      <div class="container" id="mobile-nav">
         <div class="row">
           <div class="col-6">
             <a href="index.html">
@@ -43,9 +43,9 @@
                 alt="Das Logo von WEBDESIGN made simple"
               />
             </a>
-            <div class="mobile-nav-dropdown clearfix">
-              <div class="mobile-nav-button"><span>&equiv;</span></div>
-              <div class="mobile-nav-content clearfix">
+            <div class="clearfix" id="mobile-nav-dropdown">
+              <div id="mobile-nav-button"><span>&equiv;</span></div>
+              <div class="clearfix" id="mobile-nav-content">
                 <ul>
                   <li class="active"><a href="index.html">Startseite</a></li>
                   <li><a href="leistungen.html">Leistungen</a></li>
@@ -60,10 +60,10 @@
     </nav>
 
     <!-- HEADER-BANNER -->
-    <header class="header-banner"></header>
+    <header id="header-banner"></header>
 
     <!-- NEWSLETTER-BEREICH -->
-    <section class="newsletter-bereich">
+    <section id="newsletter-bereich">
       <div class="container">
         <div class="row">
           <div class="col-4">
@@ -76,12 +76,11 @@
           </div>
           <div class="col-2 clearfix">
             <form id="nb-form" action="index.html" method="post">
-              <label for="nb-email" class="screenreader"></label>
+              <label for="nb-email-input" class="screenreader"></label>
               <input
                 type="text"
-                id="nb-email"
+                id="nb-email-input"
                 name="email"
-                class="nb-email-input"
                 placeholder="Deine E-Mail-Adresse"
                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
               />

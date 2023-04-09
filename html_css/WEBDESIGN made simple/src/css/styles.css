@@ -37,7 +37,7 @@ body {
 }
 
 /* === NAVIGATIONSLEISTE === */
-.header-nav {
+#header-nav {
   width: 100%;
   height: 50px;
   background-color: #3d3f45;
@@ -45,55 +45,55 @@ body {
   font-weight: bold;
   font-size: 1.1rem;
 }
-.header-nav a > img {
+#header-nav a > img {
   height: 30px;
   width: auto;
   float: left;
   margin-top: 0.55rem;
 }
-.header-nav ul {
+#header-nav ul {
   margin: 0;
   padding: 0;
   height: 100%;
   float: right;
 }
-.header-nav ul > li {
+#header-nav ul > li {
   display: inline-block;
   height: 100%;
   padding: 0 0.4rem 0 0.4rem;
 }
-.header-nav ul > li > a:link {
+#header-nav ul > li > a:link {
   color: #fff;
   text-decoration: none;
 }
-.header-nav ul > li > a:visited {
+#header-nav ul > li > a:visited {
   color: #fff;
   text-decoration: none;
 }
-.header-nav ul > li > a:hover {
+#header-nav ul > li > a:hover {
   color: #e5e5e5;
   text-decoration: none;
 }
-.header-nav ul > li > a:active {
+#header-nav ul > li > a:active {
   color: #e5e5e5;
   text-decoration: none;
 }
-.header-nav ul > li > a {
+#header-nav ul > li > a {
   margin-top: 0.8rem;
   display: inline-block;
 }
-.header-nav .container,
-.header-nav .row,
-.header-nav .col-6 {
+#header-nav .container,
+#header-nav .row,
+#header-nav .col-6 {
   height: 100%;
 }
-.header-nav .col-6 {
+#header-nav .col-6 {
   padding-top: 0;
   padding-bottom: 0;
 }
 
 /* === NAVIGATIONSLEISTE (MOBIL) === */
-.mobile-nav-button {
+#mobile-nav-button {
   color: #fff;
   float: right;
   font-size: 2rem;
@@ -104,52 +104,52 @@ body {
   margin-top: 0.4rem;
   margin-bottom: 7px;
 }
-.mobile-nav-button > span {
+#mobile-nav-button > span {
   position: absolute;
   bottom: -2px;
   left: 7px;
 }
-.mobile-nav-content > ul > li {
+#mobile-nav-content > ul > li {
   display: block;
   background-color: #3d3f45;
   height: 50px;
   padding: 0 1.2rem;
   text-align: center;
 }
-.mobile-nav-dropdown {
+#mobile-nav-dropdown {
   position: relative;
   float: right;
 }
-.mobile-nav-content {
+#mobile-nav-content {
   position: absolute;
   right: 0;
   top: 50px;
   display: none;
 }
-.mobile-nav-dropdown:hover > .mobile-nav-content {
+#mobile-nav-dropdown:hover > #mobile-nav-content {
   display: block;
 }
-.mobile-nav {
+#mobile-nav {
   display: none;
 }
 @media (max-width: 768px) {
-  .desktop-nav {
+  #desktop-nav {
     display: none;
   }
-  .mobile-nav {
+  #mobile-nav {
     display: block;
   }
 }
 
 /* === HEADER-BANNER === */
-.header-banner {
+#header-banner {
   width: 100%;
   height: 0;
   padding-top: 20.83%; /* 400 : 1920 * 100 = 20.83% */
   background: url("../img/hintergrund.jpg") no-repeat;
   background-size: cover;
 }
-.header-banner-klein {
+#header-banner-klein {
   width: 100%;
   height: 0;
   padding-top: 15.625%;
@@ -158,7 +158,7 @@ body {
 }
 
 /* === NEWSLETTER-BEREICH === */
-.newsletter-bereich {
+#newsletter-bereich {
   width: 100%;
   background-color: #3d3f45;
 }
@@ -166,7 +166,7 @@ body {
   color: #fff;
   font-size: 1.2rem;
 }
-.nb-email-input {
+#nb-email-input {
   width: 78%;
   height: 35px;
   border: 2px solid #fff;
@@ -183,13 +183,13 @@ body {
 }
 
 @media (max-width: 1822px) {
-  .nb-email-input {
+  #nb-email-input {
     width: 70%;
   }
 }
 
 @media (max-width: 1822px) {
-  .nb-email-input {
+  #nb-email-input {
     width: 100%;
     margin-bottom: 0.5rem;
   }
@@ -207,13 +207,13 @@ body {
     margin-top: 0;
   }
 
-  .newsletter-bereich .col-4 {
+  #newsletter-bereich .col-4 {
     display: none;
   }
 }
 
 @media (max-width: 480px) {
-  .nb-email-input {
+  #nb-email-input {
     height: 25px;
   }
 
