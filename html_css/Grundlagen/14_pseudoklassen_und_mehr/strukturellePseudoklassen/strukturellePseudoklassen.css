@@ -1,0 +1,51 @@
+/* Wurzelelement bzw html-Element */
+:root {
+  font-size: 2rem;
+}
+
+/* Alle leere Paragraphen */
+p:empty {
+  width: 200px;
+  height: 200px;
+  border: 5px solid red;
+}
+
+/* Erstes Kind */
+.container :first-child {
+  font-weight: bold;
+}
+
+/* Letztes Kind */
+.container :last-child {
+  text-decoration: underline;
+}
+
+/* 5. Kind */
+.container :nth-child(5) {
+  color: red;
+}
+
+/* Alle geraden Kinder */
+.container :nth-child(even) {
+  background-color: grey;
+}
+
+/* Alle ungeraden Kinder */
+.container :nth-child(odd) {
+  background-color: blue;
+}
+
+/* 1., 4., 7., 10., 13., 16., 19. Kind */
+.container :nth-child(3n + 1) {
+  text-decoration: line-through;
+}
+
+/* Jedes 2. Kind von hinten */
+.container :nth-last-child(2) {
+  color: red;
+}
+
+/* Einzelkinder */
+:only-child {
+  border: 10px solid purple;
+}
