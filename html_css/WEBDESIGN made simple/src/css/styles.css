@@ -16,6 +16,10 @@ body {
 * {
   box-sizing: border-box;
 }
+:focus {
+  outline: none;
+  box-shadow: 0 0 2px 2px #e5e5e5, 0 0 10px #e5e5e5;
+}
 
 /* === GENERELLES ===*/
 .clearfix::after {
@@ -90,6 +94,9 @@ body {
 #header-nav .col-6 {
   padding-top: 0;
   padding-bottom: 0;
+}
+.logo-link {
+  display: inline-block;
 }
 
 /* === NAVIGATIONSLEISTE (MOBIL) === */
