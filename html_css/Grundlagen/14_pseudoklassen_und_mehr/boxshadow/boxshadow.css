@@ -1,0 +1,28 @@
+div {
+  width: 200px;
+  height: 200px;
+  background-color: grey;
+  margin-bottom: 2rem;
+}
+
+/* box-shadow: none|x-offset y-offset blur spread color |inset|initial|inherit; */
+
+#test01 {
+  box-shadow: 10px 5px red;
+}
+
+#test02 {
+  box-shadow: 5px 5px 5px red;
+}
+
+#test03 {
+  box-shadow: 5px 5px 30px 10px red;
+}
+
+#test04 {
+  box-shadow: 0px 0px 20px 10px green inset;
+}
+
+#test05 {
+  box-shadow: 5px 5px 30px red, 0 0 20px 10px green inset;
+}
