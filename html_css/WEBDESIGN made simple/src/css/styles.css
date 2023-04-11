@@ -20,6 +20,27 @@ body {
   outline: none;
   box-shadow: 0 0 2px 2px #e5e5e5, 0 0 10px #e5e5e5;
 }
+section /*:not(#newsletter-bereich)*/ {
+  padding: 4rem 0;
+}
+@media (max-width: 1366px) {
+  section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+@media (max-width: 1024px) {
+  section {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+@media (max-width: 768px) {
+  section {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
 
 /* === GENERELLES ===*/
 .clearfix::after {
@@ -33,11 +54,62 @@ body {
 .wichtiger-text {
   font-weight: bold;
 }
+
 .btn-typ-1 {
   background-color: #a62c21;
   border: 2px solid #a62c21;
   color: #fff;
   padding: 0.4rem 0.6rem;
+}
+.btn-typ-1:hover {
+  background-color: #a62c21;
+  border: 2px solid #fff;
+}
+.btn-typ-2 {
+  border: 2px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  padding: 0.4rem 0.6rem;
+}
+.btn-typ-2:hover {
+  color: #a62c21;
+  font-weight: bold;
+  border: 2px solid #a62c21;
+}
+
+.intro-container {
+  text-align: center;
+  width: 80%;
+  margin: 0 auto 2.5rem;
+}
+.intro-container > h1 {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+}
+.intro-container > p {
+  font-size: 1.2rem;
+}
+@media (max-width: 1366px) {
+  .intro-container {
+    width: 90%;
+  }
+  .intro-container > p {
+    margin-bottom: 0.5rem;
+  }
+}
+@media (max-width: 1024px) {
+  .intro-container {
+    width: 100%;
+  }
+  .intro-container > p {
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 768px) {
+  section {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
 }
 
 /* === NAVIGATIONSLEISTE === */
@@ -168,6 +240,8 @@ body {
 #newsletter-bereich {
   width: 100%;
   background-color: #3d3f45;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 #nb-werbetext {
   color: #fff;
@@ -227,6 +301,78 @@ body {
   #nb-btn {
     height: 25px;
     padding: 0.1rem;
+  }
+}
+
+/* === LEISTUNGEN-BEREICH === */
+.leistungs-box {
+  background-color: #3d3f45;
+  text-align: center;
+  color: #fff;
+  padding: 1rem 3rem 2.5rem;
+  width: 60%;
+  margin-bottom: 1.6rem;
+}
+.leistungs-box > h2 {
+  font-size: 1.4rem;
+}
+
+#leistungen-bereich .row .col-3:nth-of-type(even) > .leistungs-box {
+  margin-left: 1rem;
+  margin-right: auto;
+}
+#leistungen-bereich .row .col-3:nth-of-type(odd) > .leistungs-box {
+  margin-right: 1rem;
+  margin-left: auto;
+}
+
+.leistung-ansehen-btn {
+  color: #fff;
+  height: 40px;
+  min-width: 100px;
+  text-decoration: none;
+  display: inline-block; /* damit Höhe nicht auto sondern 40px ist */
+  padding-top: 0.5rem;
+  margin-top: 1rem;
+}
+.leistung-ansehen-btn:link {
+  color: #fff;
+}
+.leistung-ansehen-btn:visited {
+  color: #fff;
+}
+.leistung-ansehen-btn:hover {
+  color: #a62c21;
+  font-weight: bold;
+  border: 2px solid #a62c21;
+}
+.leistung-ansehen-btn:active {
+  color: #fff;
+}
+
+@media (max-width: 1366px) {
+  .leistungs-box {
+    width: 80%;
+  }
+}
+@media (max-width: 1024px) {
+  .leistungs-box {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  #leistungen-bereich .row .col-3:nth-of-type(even) > .leistungs-box {
+    margin-left: 0.5rem;
+  }
+  #leistungen-bereich .row .col-3:nth-of-type(odd) > .leistungs-box {
+    margin-right: 0.5rem;
+  }
+}
+@media (max-width: 768px) {
+  #leistungen-bereich .row .col-3:nth-of-type(even) > .leistungs-box {
+    margin-left: 0;
+  }
+  #leistungen-bereich .row .col-3:nth-of-type(odd) > .leistungs-box {
+    margin-right: 0;
   }
 }
 
