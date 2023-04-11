@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Audios einbinden</title>
+    <link rel="stylesheet" type="text/css" href="audio.css" />
+  </head>
+  <body>
+    <!--
+        Browser   MP3	  WAV	  OGG
+        Edge/IE	  YES	  YES*	YES*
+        Chrome	  YES	  YES	  YES
+        Firefox	  YES	  YES	  YES
+        Safari	  YES	  YES	  NO
+        Opera	    YES	  YES	  YES
+    -->
+
+    <!-- Sehr ähnlich zu 'video', Fallback auch hier empfohlen -->
+    <audio controls loop muted autoplay>
+      <source src="./Akustik+Gitarre.mp3" type="audio/mpeg" />
+      <source src="./Akustik+Gitarre.ogg" type="audio/ogg" />
+
+      <p>Die Audio-Datei kann leider nicht wiedergegeben werden.</p>
+    </audio>
+  </body>
+</html>

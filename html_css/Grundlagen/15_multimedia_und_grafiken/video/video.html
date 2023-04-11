@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Videos einbinden</title>
+    <link rel="stylesheet" type="text/css" href="video.css" />
+  </head>
+  <body>
+    <!--
+      Allgemein gilt:
+        - 'autoplay' nicht gut
+        - 'controls' empfohlen
+        - Fallback wichtig, wenn Video nciht lädt (z.B: simpler Text)
+      -->
+
+    <!--
+      Möglichkeit 1:
+      <video
+      src="./WEBDESIGN+made+simple+-+Trailer.mp4"
+      controls
+      loop
+      muted
+      autoplay
+    >
+    </video>
+    -->
+
+    <!--
+      Möglichkeit 2: Besser wegen Browser-Kompatiblität, da mehrere
+      <source>-Elemente mit unterschiedlichen Videoformaten möglich
+
+      Browser	  MP4	  WebM	Ogg
+      Edge	    YES	  YES	  YES
+      Chrome	  YES	  YES	  YES
+      Firefox	  YES	  YES	  YES
+      Safari	  YES	  YES	  NO
+      Opera	    YES	  YES	  YES
+    -->
+    <video controls muted>
+      <source src="./WEBDESIGN+made+simple+-+Trailer.mp4" type="video/mp4" />
+      <p>
+        Das Video kann nicht geladen werden! Du findest das Video aber auch
+        unter:
+        <a href="https://youtu.be/Ut2goGezYM4">hier</a>.
+      </p>
+    </video>
+  </body>
+</html>
