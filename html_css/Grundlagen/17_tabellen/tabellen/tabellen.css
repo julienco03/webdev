@@ -1,0 +1,38 @@
+table {
+  margin-bottom: 2rem;
+}
+
+#test01,
+#test01 td,
+#test01 th {
+  border: 1px solid black; /* default: 'none'*/
+  border-collapse: collapse; /* default: 'seperate' */
+  /* border-spacing nicht möglich wegen collapse */
+}
+
+#test02,
+#test02 td,
+#test02 th {
+  border: 1px solid black;
+  border-collapse: separate;
+  border-spacing: 5px;
+}
+
+#test03 {
+  caption-side: bottom; /* default: 'top' */
+  empty-cells: hide; /* default: 'show' */
+  table-layout: fixed; /* default: 'auto', fixed nutzt man wenn die Breite selbst setzt
+  und den table-Algorithmus vom Browser deaktivieren will (schnelleres Laden der Seite) */
+}
+#test03 td {
+  background-color: orange;
+}
+#test03,
+#test03 td,
+#test03 th {
+  border: 1px solid black;
+}
+#test03 td,
+#test03 th {
+  width: 200px;
+}

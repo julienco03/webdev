@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tabellen in HTML</title>
+    <link rel="stylesheet" type="text/css" href="tabellen.css" />
+  </head>
+  <body>
+    <!-- Tabelle ohne Styling -->
+    <table>
+      <caption>
+        Tabelle mit Punktzahlen
+      </caption>
+      <thead>
+        <tr>
+          <th>Vorname</th>
+          <th>Nachname</th>
+          <th>Punkte</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alex</td>
+          <td>M.</td>
+          <td>22</td>
+        </tr>
+        <tr>
+          <td>Rüdiger</td>
+          <td>H.</td>
+          <td>30</td>
+        </tr>
+        <tr>
+          <td>Klaus</td>
+          <td>R.</td>
+          <td>18</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Punkte</td>
+          <td>(gesamt):</td>
+          <td>70</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <!-- Tabelle mit Styling -->
+    <table id="test01">
+      <caption>
+        Tabelle mit Punktzahlen
+      </caption>
+      <thead>
+        <tr>
+          <th>Vorname</th>
+          <th>Nachname</th>
+          <th>Punkte</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alex</td>
+          <td>M.</td>
+          <td>22</td>
+        </tr>
+        <tr>
+          <td>Rüdiger</td>
+          <td>H.</td>
+          <td>30</td>
+        </tr>
+        <tr>
+          <td>Klaus</td>
+          <td>R.</td>
+          <td>18</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Punkte</td>
+          <td>(gesamt):</td>
+          <td>70</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <!-- Tabelle mit Styling -->
+    <table id="test02">
+      <caption>
+        Tabelle mit Punktzahlen
+      </caption>
+      <thead>
+        <tr>
+          <th>Vorname</th>
+          <th>Nachname</th>
+          <th>Punkte</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alex</td>
+          <td>M.</td>
+          <td>22</td>
+        </tr>
+        <tr>
+          <td>Rüdiger</td>
+          <td>H.</td>
+          <td>30</td>
+        </tr>
+        <tr>
+          <td>Klaus</td>
+          <td>R.</td>
+          <td>18</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Punkte</td>
+          <td>(gesamt):</td>
+          <td>70</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <!-- Tabelle mit Styling -->
+    <table id="test03">
+      <caption>
+        Tabelle mit Punktzahlen
+      </caption>
+      <thead>
+        <tr>
+          <th>Vorname</th>
+          <th>Nachname</th>
+          <th>Punkte</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alex</td>
+          <td>M.</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Rüdiger</td>
+          <td></td>
+          <td>30</td>
+        </tr>
+        <tr>
+          <td>Klaus</td>
+          <td>R.</td>
+          <td>18</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Punkte</td>
+          <td>(gesamt):</td>
+          <td>70</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <!-- Tabelle mit colspan/rowspan-->
+    <table>
+      <tbody>
+        <tr>
+          <td colspan="4">Test</td>
+          <td>Test</td>
+          <td>Test</td>
+        </tr>
+        <tr>
+          <td>Test</td>
+          <td>Test</td>
+          <td>Test</td>
+          <td>Test</td>
+          <td>Test</td>
+          <td>Test</td>
+        </tr>
+        <tr>
+          <td rowspan="2">Test</td>
+          <td>Test</td>
+          <td>Test</td>
+          <td>Test</td>
+          <td>Test</td>
+          <td>Test</td>
+        </tr>
+        <tr>
+          <td>Test</td>
+          <td colspan="2" rowspan="2">Test</td>
+          <td>Test</td>
+          <td>Test</td>
+        </tr>
+        <tr>
+          <td>Test</td>
+          <td>Test</td>
+          <td>Test</td>
+          <td>Test</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

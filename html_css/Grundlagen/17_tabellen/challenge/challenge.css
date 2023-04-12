@@ -1,0 +1,37 @@
+body {
+  font-family: "Raleway", "Arial", "sans-serif";
+}
+
+table {
+  width: 50%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+table > caption {
+  font-size: 1.5rem;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+table > thead {
+  background-color: dimgray;
+}
+
+table td,
+table th {
+  padding: 0.4rem;
+  font-size: 0.85rem;
+}
+
+tr:nth-of-type(even) {
+  background-color: #eef;
+}
+
+tbody {
+  border-bottom: 3px solid dimgray;
+}
+
+table > tfoot > tr:first-of-type {
+  font-weight: bold;
+}
