@@ -1,0 +1,83 @@
+div {
+  width: 200px;
+  height: 200px;
+  background-color: grey;
+}
+
+#test {
+  position: relative;
+  /* Kurzschreibweise:
+  animation: name duration timing-function delay iteration-count direction fill-mode;
+  */
+  animation-name: komplexe_animation;
+  animation-duration: 7s; /* default: 0s */
+  animation-timing-function: ease-in-out; /* default: ease */
+  animation-delay: 1s; /* default: 0s */
+  animation-iteration-count: infinite; /* default: 1 */
+  animation-direction: alternate-reverse; /* default: normal */
+  animation-play-state: running; /* default: running */
+  animation-fill-mode: both;
+}
+
+@keyframes farbwechsel {
+  /* 'from' = 0%, 'to' = 100% */
+  0% {
+    background-color: red;
+  }
+  17% {
+    background-color: orange;
+  }
+  33% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: green;
+  }
+  67% {
+    background-color: lightblue;
+  }
+  83% {
+    background-color: indigo;
+  }
+  100% {
+    background-color: violet;
+  }
+}
+
+@keyframes komplexe_animation {
+  0% {
+    background-color: red;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+  }
+  25% {
+    background-color: orange;
+    top: 0;
+    left: 400px;
+    width: 100px;
+    height: 100px;
+  }
+  50% {
+    background-color: yellow;
+    top: 400px;
+    left: 400px;
+    width: 200px;
+    height: 200px;
+  }
+  75% {
+    background-color: green;
+    top: 400px;
+    left: 0;
+    width: 300px;
+    height: 300px;
+  }
+  100% {
+    background-color: lightblue;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+  }
+}
