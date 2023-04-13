@@ -462,6 +462,45 @@ section /*:not(#newsletter-bereich)*/ {
   }
 }
 
+/* === ÜBER-UNS-BEREICH === */
+#über-uns-bereich {
+  background-color: #fff;
+}
+#über-uns-container {
+  position: relative;
+  width: 85%;
+  margin-right: auto;
+  margin-left: auto;
+}
+#über-uns-container > img {
+  position: absolute;
+  top: 0;
+  right: 100px;
+  height: 100%;
+}
+#über-uns-container > p {
+  width: 75%;
+  font-size: 1.2rem;
+}
+@media (max-width: 1440px) {
+  #über-uns-container > img {
+    right: 50px;
+  }
+}
+@media (max-width: 1280px) {
+  #über-uns-container > img {
+    right: 0;
+  }
+}
+@media (max-width: 1140px) {
+  #über-uns-container > img {
+    display: none;
+  }
+  #über-uns-container > p {
+    width: 100%;
+  }
+}
+
 /* === GRID-SYSTEM (Sichtbarkeit) === */
 /*
 .border,
