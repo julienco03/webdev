@@ -501,6 +501,40 @@ section /*:not(#newsletter-bereich)*/ {
   }
 }
 
+/* === FOOTER-BEREICH === */
+#footer {
+  background-color: #3d3f45;
+  height: 2.8rem;
+}
+#footer-nav {
+  float: right;
+}
+
+#footer span {
+  color: #fff;
+}
+@media (max-width: 565px) {
+  #footer span {
+    display: none;
+  }
+}
+
+#footer-nav > a {
+  text-decoration: none;
+}
+#footer-nav > a:link {
+  color: #fff;
+}
+#footer-nav > a:visited {
+  color: #fff;
+}
+#footer-nav > a:hover {
+  color: #f0f0f0;
+}
+#footer-nav > a:active {
+  color: #fff;
+}
+
 /* === GRID-SYSTEM (Sichtbarkeit) === */
 /*
 .border,
