@@ -1,0 +1,130 @@
+/* === GENERELLES === */
+
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* === GRID-SYSTEM === */
+/* .border,
+.border * {
+  border: 1px solid #91c4ff;
+}
+
+[class*="col-"] {
+  background-color: #bfddff;
+}
+
+p {
+  background-color: #91c4ff;
+  padding: 0;
+  margin: 0;
+  color: white;
+  text-align: center;
+}
+
+
+.container {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+[class*="col-"] {
+  float: left;
+  min-height: 1px;
+  padding: 0.8rem;
+}
+
+.col-1 {
+  width: 16.666%;
+}
+.col-2 {
+  width: 33.333%;
+}
+.col-3 {
+  width: 50%;
+}
+.col-4 {
+  width: 66.666%;
+}
+.col-6 {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .col-1 {
+    width: 33.333%;
+  }
+}
+
+@media (max-width: 768px) {
+  .col-1 {
+    width: 50%;
+  }
+  .col-2 {
+    width: 100%;
+  }
+  .col-3 {
+    width: 100%;
+  }
+  .col-4 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .col-1 {
+    width: 100%;
+  }
+  .col-2 {
+    width: 100%;
+  }
+  .col-3 {
+    width: 100%;
+  }
+  .col-4 {
+    width: 100%;
+  }
+} */
+
+/* === FLEXBOX === */
+.flex-container {
+  display: flex;
+  width: 95%;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #bfddff;
+  /* 
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    Kurzschreibweise: flex-flow: flex-direction flex-wrap;
+  */
+  /* flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-end; */
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-evenly;
+}
+
+.flex-container > * {
+  /* margin: 0.8rem; */
+  background-color: #91c4ff;
+  width: 200px;
+}
+
+p {
+  margin: 0;
+}
