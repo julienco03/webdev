@@ -305,7 +305,7 @@ section /*:not(#newsletter-bereich)*/ {
 }
 
 /* === LEISTUNGEN-BEREICH === */
-.leistungs-box {
+.leistungs-teaser-box {
   background-color: #3d3f45;
   text-align: center;
   color: #fff;
@@ -313,15 +313,15 @@ section /*:not(#newsletter-bereich)*/ {
   width: 60%;
   margin-bottom: 1.6rem;
 }
-.leistungs-box > h2 {
+.leistungs-teaser-box > h2 {
   font-size: 1.4rem;
 }
 
-#leistungen-bereich .row .col-3:nth-of-type(even) > .leistungs-box {
+#leistungen-bereich .row .col-3:nth-of-type(even) > .leistungs-teaser-box {
   margin-left: 1rem;
   margin-right: auto;
 }
-#leistungen-bereich .row .col-3:nth-of-type(odd) > .leistungs-box {
+#leistungen-bereich .row .col-3:nth-of-type(odd) > .leistungs-teaser-box {
   margin-right: 1rem;
   margin-left: auto;
 }
@@ -351,27 +351,27 @@ section /*:not(#newsletter-bereich)*/ {
 }
 
 @media (max-width: 1366px) {
-  .leistungs-box {
+  .leistungs-teaser-box {
     width: 80%;
   }
 }
 @media (max-width: 1024px) {
-  .leistungs-box {
+  .leistungs-teaser-box {
     width: 100%;
     margin-bottom: 0.5rem;
   }
-  #leistungen-bereich .row .col-3:nth-of-type(even) > .leistungs-box {
+  #leistungen-bereich .row .col-3:nth-of-type(even) > .leistungs-teaser-box {
     margin-left: 0.5rem;
   }
-  #leistungen-bereich .row .col-3:nth-of-type(odd) > .leistungs-box {
+  #leistungen-bereich .row .col-3:nth-of-type(odd) > .leistungs-teaser-box {
     margin-right: 0.5rem;
   }
 }
 @media (max-width: 768px) {
-  #leistungen-bereich .row .col-3:nth-of-type(even) > .leistungs-box {
+  #leistungen-bereich .row .col-3:nth-of-type(even) > .leistungs-teaser-box {
     margin-left: 0;
   }
-  #leistungen-bereich .row .col-3:nth-of-type(odd) > .leistungs-box {
+  #leistungen-bereich .row .col-3:nth-of-type(odd) > .leistungs-teaser-box {
     margin-right: 0;
   }
 }
@@ -533,6 +533,59 @@ section /*:not(#newsletter-bereich)*/ {
 }
 #footer-nav > a:active {
   color: #fff;
+}
+
+/* === LEISTUNGEN-SEITE === */
+.flex-container {
+  display: flex;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-around;
+  align-items: center;
+}
+.leistungs-box {
+  background-color: #3d3f45;
+  color: #fff;
+  padding: 2rem 4rem;
+  text-align: center;
+  min-height: 600px;
+  display: flex;
+  flex-basis: 25%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.leistungs-box ul {
+  padding: 0;
+}
+.leistungs-box ul > li {
+  list-style-position: inside;
+  margin-bottom: 0.5rem;
+}
+.leistungs-box-empfohlen {
+  flex-basis: 27.5%;
+  min-height: 720px;
+  box-shadow: 0 0 20px 0 #3d3f45;
+  font-size: 1.05rem;
+}
+.leistungs-box h1 {
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+}
+.leistungs-box p {
+  margin-top: 0;
+}
+
+.leistung-auswählen-btn {
+  width: 50%;
+  height: 2.5rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.leistung-auswählen-btn:hover {
+  font-weight: normal;
 }
 
 /* === GRID-SYSTEM (Sichtbarkeit) === */
