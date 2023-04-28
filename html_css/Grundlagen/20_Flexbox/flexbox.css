@@ -97,34 +97,75 @@ p {
   }
 } */
 
-/* === FLEXBOX === */
-.flex-container {
+p {
+  margin: 0;
+}
+
+/* === FLEXBOX: BASIC STYLING OF CONTAINER === */
+.flex-container,
+.flex-container-2,
+.flex-container-3 {
   display: flex;
   width: 95%;
-  height: 600px;
+  height: 400px;
   margin-left: auto;
   margin-right: auto;
   background-color: #bfddff;
-  /* 
-    flex-direction: row;
-    flex-wrap: wrap;
-    
-    Kurzschreibweise: flex-flow: flex-direction flex-wrap;
-  */
-  /* flex-flow: row wrap;
-  justify-content: center;
-  align-items: flex-end; */
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-content: space-evenly;
 }
 
-.flex-container > * {
-  /* margin: 0.8rem; */
+/* === FLEXBOX: BASIC STYLING OF ITEMS === */
+.flex-container > *,
+.flex-container-3 > * {
   background-color: #91c4ff;
   width: 200px;
 }
 
-p {
-  margin: 0;
+/* === FLEXBOX: CONTAINER EIGENSCHAFTEN === */
+.flex-container {
+  /* flex-flow: flex-direction flex-wrap; */
+  flex-flow: row wrap;
+  justify-content: space-evenly; /* horizontal alignment */
+  align-items: flex-end; /* vertical alignment */
+  align-content: center; /* basic positional alignment */
+}
+
+/* === FLEXBOX: ITEMS EIGENSCHAFTEN === */
+/* flex: flex-grow flex-shrink flex-basis */
+.flex-container-2 > p:nth-of-type(1) {
+  background-color: yellow;
+  flex: 6 3 300px;
+}
+.flex-container-2 > p:nth-of-type(2) {
+  background-color: orange;
+  flex: 3 1 300px;
+}
+.flex-container-2 > p:nth-of-type(3) {
+  background-color: orangered;
+  flex: 1 6 300px;
+}
+
+/* === FLEXBOX: ORDER & ALIGN-SELF === */
+.flex-container-3 > p:nth-of-type(1) {
+  order: 2;
+  align-self: auto;
+}
+.flex-container-3 > p:nth-of-type(2) {
+  order: 4;
+  align-self: baseline;
+}
+.flex-container-3 > p:nth-of-type(3) {
+  order: 6;
+  align-self: center;
+}
+.flex-container-3 > p:nth-of-type(4) {
+  order: 1;
+  align-self: flex-start;
+}
+.flex-container-3 > p:nth-of-type(5) {
+  order: 3;
+  align-self: flex-end;
+}
+.flex-container-3 > p:nth-of-type(6) {
+  order: 5;
+  align-self: stretch;
 }
