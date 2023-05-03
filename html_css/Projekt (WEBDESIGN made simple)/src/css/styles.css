@@ -536,14 +536,35 @@ section /*:not(#newsletter-bereich)*/ {
 }
 
 /* === LEISTUNGEN-SEITE === */
+.leistung:nth-of-type(even) {
+  background-color: #e0e0e0;
+}
+
 .flex-container {
   display: flex;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
   justify-content: space-around;
-  align-items: center;
+  align-items: stretch;
 }
+.flex-container > .intro-container {
+  width: 100%;
+}
+
+@media (max-width: 1366px) {
+  .flex-container {
+    width: 90%;
+  }
+}
+@media (max-width: 1024px) {
+  .flex-container {
+    width: 100%;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
 .leistungs-box {
   background-color: #3d3f45;
   color: #fff;
@@ -563,18 +584,17 @@ section /*:not(#newsletter-bereich)*/ {
   list-style-position: inside;
   margin-bottom: 0.5rem;
 }
-.leistungs-box-empfohlen {
-  flex-basis: 27.5%;
-  min-height: 720px;
-  box-shadow: 0 0 20px 0 #3d3f45;
-  font-size: 1.05rem;
-}
 .leistungs-box h1 {
   margin-bottom: 1rem;
   margin-top: 1.5rem;
 }
 .leistungs-box p {
   margin-top: 0;
+}
+.leistungs-box-empfohlen {
+  flex-basis: 27.5%;
+  box-shadow: 0 0 20px 0 #3d3f45;
+  font-size: 1.05rem;
 }
 
 .leistung-auswählen-btn {
@@ -583,9 +603,53 @@ section /*:not(#newsletter-bereich)*/ {
   font-size: 1rem;
   margin-top: 0.5rem;
   margin-bottom: 1.5rem;
+  min-width: 170px;
 }
 .leistung-auswählen-btn:hover {
   font-weight: normal;
+}
+
+@media (max-width: 1782px) {
+  .leistungs-box {
+    flex-basis: 27.5%;
+  }
+  .leistungs-box-empfohlen {
+    flex-basis: 30%;
+  }
+}
+@media (max-width: 1622px) {
+  .leistungs-box {
+    flex-basis: 30%;
+  }
+  .leistungs-box-empfohlen {
+    flex-basis: 32.5%;
+  }
+}
+@media (max-width: 1488px) {
+  .leistungs-box {
+    padding: 1rem 2rem;
+  }
+}
+@media (max-width: 1088px) {
+  .flex-container {
+    flex-direction: column;
+  }
+  .leistungs-box {
+    padding: 2rem 4rem;
+    margin-bottom: 2rem;
+    min-height: initial;
+  }
+}
+@media (max-width: 768px) {
+  .flex-container {
+    width: 90%;
+    padding: 1rem 1rem;
+  }
+}
+@media (max-width: 429px) {
+  .leistungs-box {
+    padding: 1rem 1rem;
+  }
 }
 
 /* === GRID-SYSTEM (Sichtbarkeit) === */
