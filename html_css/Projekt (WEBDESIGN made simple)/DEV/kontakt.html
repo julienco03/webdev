@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WEBDESIGN made simple</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- FAVICONS -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="src/img/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="src/img/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="src/img/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="src/img/favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="src/img/favicon/safari-pinned-tab.svg"
+      color="#ff0000"
+    />
+    <link rel="shortcut icon" href="src/img/favicon/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#f0f0f0" />
+    <meta
+      name="msapplication-config"
+      content="src/img/favicon/browserconfig.xml"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- GOOGLE FONTS (NICHT DSVGO-KONFORM, DAHER ALS FONT FACE!)
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+    -->
+    <!-- AUTOREN-STYLESHEET -->
+    <link rel="stylesheet" type="text/css" href="./src/css/styles.css" />
+  </head>
+
+  <body>
+    <!-- NAVIGATIONSLEISTE (DESKTOP) -->
+    <nav id="header-nav">
+      <div class="container" id="desktop-nav">
+        <div class="row">
+          <div class="col-6">
+            <a href="index.html" class="logo-link">
+              <img
+                src="./src/img/webdesign-logo.png"
+                alt="Logo von WEBDESIGN made simple"
+              />
+            </a>
+            <ul>
+              <li><a href="index.html">Startseite</a></li>
+              <li><a href="leistungen.html">Leistungen</a></li>
+              <li class="active"><a href="kontakt.html">Kontakt</a></li>
+              <li><a href="impressum.html">Impressum</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- NAVIGATIONSLEISTE (MOBIL) -->
+      <div class="container" id="mobile-nav">
+        <div class="row">
+          <div class="col-6">
+            <a href="index.html" class="logo-link">
+              <img
+                src="src/img/webdesign-logo.png"
+                alt="Das Logo von WEBDESIGN made simple"
+              />
+            </a>
+            <div class="clearfix" id="mobile-nav-dropdown">
+              <div id="mobile-nav-button"><span>&equiv;</span></div>
+              <div class="clearfix" id="mobile-nav-content">
+                <ul>
+                  <li><a href="index.html">Startseite</a></li>
+                  <li><a href="leistungen.html">Leistungen</a></li>
+                  <li class="active"><a href="kontakt.html">Kontakt</a></li>
+                  <li><a href="impressum.html">Impressum</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HEADER-BANNER -->
+    <header id="header-banner-klein"></header>
+
+    <!-- KONTAKT-BEREICH -->
+    <section id="kontakt-bereich"></section>
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <header class="intro-container">
+            <h1>Kontakt</h1>
+            <p>
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde
+              harum commodi laudantium quis quaerat esse, quasi beatae excepturi
+              magnam, minus sequi ad ex ut mollitia inventore eum, labore iusto
+              nobis?
+            </p>
+          </header>
+        </div>
+      </div>
+      <form id="kontakt-formular" action="kontakt.html" method="post">
+        <div class="row">
+          <div class="col-3">
+            <label for="vorname" class="screenreader">Vorname:</label>
+            <input
+              type="text"
+              id="vorname"
+              name="vorname"
+              placeholder="Vorname"
+            />
+          </div>
+          <div class="col-3">
+            <label for="nachname" class="screenreader">Nachname:</label>
+            <input
+              type="text"
+              id="nachname"
+              name="nachname"
+              placeholder="Nachname"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label for="email" class="screenreader">E-Mail:</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              placeholder="E-Mail"
+              pattern="/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label for="nachricht" class="screenreader">Nachricht:</label>
+            <textarea
+              name="nachricht"
+              id="nachricht"
+              placeholder="Nachricht"
+            ></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <button
+              type="submit"
+              name="absenden-button"
+              class="btn-typ-3"
+              id="absenden-button"
+            >
+              Senden
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- FOOTER-BEREICH -->
+    <footer id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <span>WEBDESIGN made simple by Max Mustermann (2023)</span>
+            <nav id="footer-nav">
+              <a href="impressum.html">Impressum</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- HOVER-FIX FÜR iOS-GERÄTE -->
+    <script defer>
+      document.addEventListener("touchstart", function () {}, true);
+    </script>
+  </body>
+</html>
