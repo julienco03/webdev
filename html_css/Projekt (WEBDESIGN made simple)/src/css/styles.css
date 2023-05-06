@@ -60,9 +60,9 @@ section /*:not(#newsletter-bereich)*/ {
   border: 2px solid #a62c21;
   color: #fff;
   padding: 0.4rem 0.6rem;
+  transition: border 0.5s ease-in-out;
 }
 .btn-typ-1:hover {
-  background-color: #a62c21;
   border: 2px solid #fff;
 }
 .btn-typ-2 {
@@ -70,10 +70,20 @@ section /*:not(#newsletter-bereich)*/ {
   background-color: transparent;
   color: #fff;
   padding: 0.4rem 0.6rem;
+  transition: color 0.5s ease-in-out, border 0.5s ease-in-out;
 }
 .btn-typ-2:hover {
   color: #a62c21;
-  font-weight: bold;
+  border: 2px solid #a62c21;
+}
+.btn-typ-3 {
+  border: 2px solid #3d3f45;
+  background-color: transparent;
+  font-size: 1rem;
+  color: #3d3f45;
+  transition: border 0.5s ease-in-out;
+}
+.btn-typ-3:hover {
   border: 2px solid #a62c21;
 }
 
@@ -110,6 +120,10 @@ section /*:not(#newsletter-bereich)*/ {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
   }
+}
+
+.screenreader {
+  display: none;
 }
 
 /* === NAVIGATIONSLEISTE === */
@@ -304,6 +318,56 @@ section /*:not(#newsletter-bereich)*/ {
   }
 }
 
+/* === ANIMIERTES LOGO === */
+#animiertes-logo {
+  height: 150px;
+  width: 150px;
+  background-color: #3d3f45;
+  border-radius: 50%;
+  margin: 4rem auto 0;
+  padding: 23px;
+}
+#animiertes-logo > img {
+  display: block;
+  height: 100px;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: logoAnimation 5s ease-in-out infinite alternate;
+}
+@keyframes logoAnimation {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  11.111% {
+    transform: rotateZ(0deg);
+  }
+  22.222% {
+    transform: rotateZ(90deg);
+  }
+  33.333% {
+    transform: rotateZ(90deg);
+  }
+  44.444% {
+    transform: rotateZ(180deg);
+  }
+  55.555% {
+    transform: rotateZ(180deg);
+  }
+  66.666% {
+    transform: rotateZ(270deg);
+  }
+  77.777% {
+    transform: rotateZ(270deg);
+  }
+  88.888% {
+    transform: rotateZ(360deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
 /* === LEISTUNGEN-BEREICH === */
 .leistungs-teaser-box {
   background-color: #3d3f45;
@@ -343,7 +407,6 @@ section /*:not(#newsletter-bereich)*/ {
 }
 .leistung-ansehen-btn:hover {
   color: #a62c21;
-  font-weight: bold;
   border: 2px solid #a62c21;
 }
 .leistung-ansehen-btn:active {
@@ -435,6 +498,10 @@ section /*:not(#newsletter-bereich)*/ {
   border-radius: 50%;
   margin-left: auto;
   margin-right: auto;
+  transition: transform 1s;
+}
+.service-icon:hover {
+  transform: rotateZ(360deg);
 }
 #guenstig-icon {
   background: #3d3f45 url("../img/services-sprite.png") left 0 top 0;
@@ -650,6 +717,58 @@ section /*:not(#newsletter-bereich)*/ {
   .leistungs-box {
     padding: 1rem 1rem;
   }
+}
+
+/* === KONTAKT-SEITE === */
+#kontakt-formular input,
+#kontakt-formular textarea {
+  width: 100%;
+  border: 2px solid #3d3f45;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-family: "Raleway", "Lato", "Helvetica Neue", "Arial", sans-serif;
+  color: #3d3f45;
+  transition: border 0.5s ease-in-out;
+}
+#kontakt-formular textarea {
+  height: 100px;
+}
+
+#kontakt-formular input:hover,
+#kontakt-formular textarea:hover {
+  border: 2px solid #a62c21;
+}
+
+#absenden-button {
+  width: 150px;
+  height: 39px;
+}
+
+#kontakt-formular {
+  width: 80%;
+  margin: 0 auto 2.5rem;
+}
+@media (max-width: 1366px) {
+  #kontakt-formular {
+    width: 90%;
+  }
+}
+@media (max-width: 1024px) {
+  #kontakt-formular {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  #kontakt-formular button {
+    width: 100%;
+  }
+}
+
+/* === IMPRESSUM === */
+#impressum a {
+  color: #3d3f45;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 /* === GRID-SYSTEM (Sichtbarkeit) === */
