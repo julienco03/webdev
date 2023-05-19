@@ -4,15 +4,24 @@
 const haushaltsbuch = {
   gesamtbilanz: new Map(),
   eintraege: [],
+  fehler: [],
 
   eintrag_erfassen() {
+    this.fehler = [];
     let neuer_eintrag = new Map();
     neuer_eintrag.set("titel", this.titel_verarbeiten(prompt("Titel:")));
     neuer_eintrag.set("typ", this.typ_verarbeiten(prompt("Typ (Einnahme oder Ausgabe):")));
     neuer_eintrag.set("betrag", this.betrag_verarbeiten(prompt("Betrag (in Euro):")));
     neuer_eintrag.set("datum", this.datum_verarbeiten(prompt("Datum (YYYY-MM-DD):")));
     neuer_eintrag.set("timestamp", Date.now());
-    this.eintraege.push(neuer_eintrag);
+    if (this.fehler.length === 0) {
+      this.eintraege.push(neuer_eintrag);
+    } else {
+      console.log("Folgende Fehler wurden gefunden:\n");
+      this.fehler.forEach((fehler) => {
+        console.log(">> " + fehler);
+      });
+    }
   },
 
   titel_verarbeiten(titel) {
@@ -20,8 +29,7 @@ const haushaltsbuch = {
     if (this.titel_validieren(titel)) {
       return titel;
     } else {
-      console.log("Kein Titel angegeben!");
-      return false;
+      this.fehler.push("Kein Titel angegeben!");
     }
   },
   titel_validieren(titel) {
@@ -37,8 +45,7 @@ const haushaltsbuch = {
     if (this.typ_validieren(typ)) {
       return typ;
     } else {
-      console.log(`Ungültiger Typ angegeben: ${typ}`);
-      return false;
+      this.fehler.push(`Ungültiger Eintrags-Typ angegeben: "${typ}"`);
     }
   },
   typ_validieren(typ) {
@@ -54,8 +61,7 @@ const haushaltsbuch = {
     if (this.betrag_validieren(betrag)) {
       return parseFloat(betrag.replace(",", ".")) * 100;
     } else {
-      console.log(`Ungültiger Betrag: ${betrag} €`);
-      return false;
+      this.fehler.push(`Ungültiger Betrag: ${betrag} €`);
     }
   },
   betrag_validieren(betrag) {
@@ -71,7 +77,7 @@ const haushaltsbuch = {
     if (this.datum_validieren(datum)) {
       return new Date(`${datum} 00:00:00`);
     } else {
-      console.log(`Ungültiges Datum: ${datum}`);
+      this.fehler.push(`Ungültiges Datum: "${datum}"`);
       return false;
     }
   },
@@ -153,10 +159,12 @@ const haushaltsbuch = {
   eintrag_hinzufuegen() {
     do {
       this.eintrag_erfassen();
-      this.eintraege_sortieren();
-      this.eintraege_ausgeben();
-      this.gesamtbilanz_erstellen();
-      this.gesamtbilanz_ausgeben();
+      if (this.fehler.length === 0) {
+        this.eintraege_sortieren();
+        this.eintraege_ausgeben();
+        this.gesamtbilanz_erstellen();
+        this.gesamtbilanz_ausgeben();
+      }
     } while (confirm("Weiteren Eintrag hinzufügen?"));
   },
 };
