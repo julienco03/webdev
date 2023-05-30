@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+/* sorgt dafür, dass alles zentriert ist */
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #333;
+  color: #222;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+.container {
+  background-color: #fafafa;
+  transform-origin: top left;
+  transition: transform 0.5s linear;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 50px;
+}
+
+/* sorge dafür, dass der container schräg ist */
+.container.show-nav {
+  transform: rotate(-20deg);
+}
+
+/* der circle-container soll fixiert und teils versteckt sein */
+.circle-container {
+  position: fixed;
+  top: -100px;
+  left: -100px;
+}
+
+/* das div soll u.a. rund sein */
+.circle {
+  background-color: #ff7979;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  position: relative;
+  transition: transform 0.5s linear;
+}
+
+.circle button {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100px;
+  background: transparent;
+  border: 0;
+  font-size: 26px;
+  color: #fff;
+}
+
+/* wenn die nav angezeigt wird, rotiert das close-icon an die stelle des open-icons */
+.container.show-nav .circle {
+  transform: rotate(-70deg);
+}
+
+/* richte die icons entsprechend in dem runden div links oben aus */
+.circle button#open {
+  left: 60%;
+}
+.circle button#close {
+  top: 60%;
+  transform: rotate(90deg);
+  transform-origin: top left;
+}
+
+/* zeige die listenelemente der nav an der richtigen stelle an */
+.container.show-nav + nav li {
+  transform: translateX(0);
+  /* transition-delay: 0.3s; */
+}
+
+/* fixiere die nav und vergrößere den abstand nach unten */
+nav {
+  position: fixed;
+  bottom: 40px;
+  left: 0;
+  z-index: 100;
+}
+
+/* entferne die default listenpunkte */
+nav ul {
+  list-style-type: none;
+  padding-left: 30px;
+}
+
+/* lass die listenelemente der nav von links hineinschweben */
+nav ul li {
+  text-transform: uppercase;
+  color: #fff;
+  margin: 40px 0;
+  transform: translateX(-100%);
+  transition: transform 0.4s ease-in;
+}
+
+/* vergrößere die navbar icons und vergrößere den abstand zum text */
+nav ul li i {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+/* rücke den navbar eintrag auf jeder ebene etwas stärker (links) ein */
+nav ul li + li {
+  margin-left: 15px;
+  transform: translateX(-150%);
+}
+nav ul li + li + li {
+  margin-left: 30px;
+  transform: translateX(-200%);
+}
+
+/* bild soll nicht größer als es ist dargestellt werden */
+.content img {
+  max-width: 100%;
+}
+
+/* beschränke die breite von text und bild und zentriere alles */
+.content {
+  max-width: 1000px;
+  margin: 50px auto;
+}
+
+/* verringere abstand zum subheader bzw. small-element */
+.content h1 {
+  margin: 0;
+}
+
+.content small {
+  color: #555;
+  font-style: italic;
+}
+
+.content p {
+  color: #555;
+  line-height: 1.5;
+}
