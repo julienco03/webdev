@@ -1,4 +1,4 @@
-# Repo for Udemy courses associated with Web Development
+# Repo for my work on Udemy courses associated with Web Development
 
 - [Docker komplett: Vom Anfänger zum Profi (inkl. Kubernetes)](https://www.udemy.com/course/docker-komplett/) [wip]  
 - [Der ultimative JavaScript Komplettkurs](https://www.udemy.com/course/der-ultimative-javascript-komplettkurs/) [wip]  
