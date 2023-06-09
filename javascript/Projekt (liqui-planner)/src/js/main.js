@@ -119,7 +119,7 @@ const haushaltsbuch = {
   // },
 
   // <ul>
-  //   <li class="ausgabe">
+  //   <li class="ausgabe" data-timestamp="131249802384">
   //     <span class="datum">03.02.2020</span>
   //     <span class="titel">Miete</span>
   //     <span class="betrag">545,00 €</span>
@@ -127,7 +127,7 @@ const haushaltsbuch = {
   //       <i class="fas fa-trash"></i>
   //     </button>
   //   </li>
-  //   <li class="einnahme">
+  //   <li class="einnahme" data-timestamp="1312309572387">
   //     <span class="datum">01.02.2020</span>
   //     <span class="titel">Gehalt</span>
   //     <span class="betrag">2064,37 €</span>
@@ -137,7 +137,44 @@ const haushaltsbuch = {
   //   </li>
   // </ul>
 
-  html_eintrag_generieren(eintrag) {},
+  html_eintrag_generieren(eintrag) {
+    let listenpunkt = document.createElement('li')
+    if (eintrag.get('typ') === 'einnahme') {
+      listenpunkt.setAttribute('class', 'einnahme')
+    } else if (eintrag.get('typ') === 'ausgabe') {
+      listenpunkt.setAttribute('class', 'ausgabe')
+    }
+    listenpunkt.setAttribute('data-timestamp', eintrag.get('timestamp'))
+
+    let datum = document.createElement('span')
+    datum.setAttribute('class', 'datum')
+    datum.textContent = eintrag.get('datum').toLocaleDateString('de-DE', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    })
+    listenpunkt.insertAdjacentElement('afterbegin', datum)
+
+    let titel = document.createElement('span')
+    titel.setAttribute('class', 'titel')
+    titel.textContent = eintrag.get('titel')
+    datum.insertAdjacentElement('afterend', titel)
+
+    let betrag = document.createElement('span')
+    betrag.setAttribute('class', 'betrag')
+    betrag.textContent = `${(eintrag.get('betrag') / 100).toFixed(2).replace(/\./, ',')} €`
+    titel.insertAdjacentElement('afterend', betrag)
+
+    let button = document.createElement('button')
+    button.setAttribute('class', 'entfernen-button')
+    betrag.insertAdjacentElement('afterend', button)
+
+    let icon = document.createElement('i')
+    icon.setAttribute('class', 'fas fa-trash')
+    button.insertAdjacentElement('afterbegin', icon)
+
+    return listenpunkt
+  },
 
   eintraege_anzeigen() {
     // entferne vorhandene Monatslisten
@@ -148,7 +185,7 @@ const haushaltsbuch = {
     // füge die Einträge in die neue Monatsliste ein
     let eintragsliste = document.createElement('ul')
     for (const eintrag of this.eintraege) {
-      eintragsliste.insertAdjacentElement('beforeend', this.html_generieren(eintrag))
+      eintragsliste.insertAdjacentElement('beforeend', this.html_eintrag_generieren(eintrag))
     }
 
     // füge die Monatsliste in article.monatliste ein
