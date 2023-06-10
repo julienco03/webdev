@@ -25,7 +25,9 @@ const haushaltsbuch = {
   },
 
   titel_verarbeiten(titel) {
-    titel = titel.trim()
+    if (titel != null) {
+      titel = titel.trim()
+    }
     if (this.titel_validieren(titel)) {
       return titel
     } else {
@@ -41,7 +43,9 @@ const haushaltsbuch = {
   },
 
   typ_verarbeiten(typ) {
-    typ = typ.trim().toLowerCase()
+    if (typ != null) {
+      typ = typ.trim().toLowerCase()
+    }
     if (this.typ_validieren(typ)) {
       return typ
     } else {
@@ -49,7 +53,7 @@ const haushaltsbuch = {
     }
   },
   typ_validieren(typ) {
-    if (typ.match(/^(?:einnahme|ausgabe)$/)) {
+    if (typ != null && typ.match(/^(?:einnahme|ausgabe)$/)) {
       return true
     } else {
       return false
@@ -57,7 +61,9 @@ const haushaltsbuch = {
   },
 
   betrag_verarbeiten(betrag) {
-    betrag = betrag.trim()
+    if (betrag != null) {
+      betrag = betrag.trim()
+    }
     if (this.betrag_validieren(betrag)) {
       return parseFloat(betrag.replace(',', '.')) * 100
     } else {
@@ -65,7 +71,7 @@ const haushaltsbuch = {
     }
   },
   betrag_validieren(betrag) {
-    if (betrag.match(/^\d+(?:(?:,|.)\d{1,2})?$/) !== null) {
+    if (betrag != null && betrag.match(/^\d+(?:(?:,|.)\d{1,2})?$/) !== null) {
       return true
     } else {
       return false
@@ -73,7 +79,9 @@ const haushaltsbuch = {
   },
 
   datum_verarbeiten(datum) {
-    datum = datum.trim()
+    if (datum != null) {
+      datum = datum.trim()
+    }
     if (this.datum_validieren(datum)) {
       return new Date(`${datum} 00:00:00`)
     } else {
@@ -82,7 +90,7 @@ const haushaltsbuch = {
     }
   },
   datum_validieren(datum) {
-    if (datum.match(/^\d{4}-\d{2}-\d{2}$/) !== null) {
+    if (datum != null && datum.match(/^\d{4}-\d{2}-\d{2}$/) !== null) {
       return true
     } else {
       return false
@@ -101,43 +109,8 @@ const haushaltsbuch = {
     })
   },
 
-  // eintraege_ausgeben() {
-  //   console.clear();
-  //   this.eintraege.forEach((eintrag) => {
-  //     console.log(
-  //       `Titel: ${eintrag.get("titel")}\n` +
-  //         `Typ: ${eintrag.get("typ")}\n` +
-  //         `Betrag: ${(eintrag.get("betrag") / 100).toFixed(2)} €\n` +
-  //         `Datum: ${eintrag.get("datum").toLocaleDateString("de-DE", {
-  //           year: "numeric",
-  //           month: "2-digit",
-  //           day: "2-digit",
-  //         })}\n` +
-  //         `Timestamp: ${eintrag.get("timestamp")}`
-  //     );
-  //   });
-  // },
-
-  // <ul>
-  //   <li class="ausgabe" data-timestamp="131249802384">
-  //     <span class="datum">03.02.2020</span>
-  //     <span class="titel">Miete</span>
-  //     <span class="betrag">545,00 €</span>
-  //     <button class="entfernen-button">
-  //       <i class="fas fa-trash"></i>
-  //     </button>
-  //   </li>
-  //   <li class="einnahme" data-timestamp="1312309572387">
-  //     <span class="datum">01.02.2020</span>
-  //     <span class="titel">Gehalt</span>
-  //     <span class="betrag">2064,37 €</span>
-  //     <button class="entfernen-button">
-  //       <i class="fas fa-trash"></i>
-  //     </button>
-  //   </li>
-  // </ul>
-
   html_eintrag_generieren(eintrag) {
+    // <li class="..."></li>
     let listenpunkt = document.createElement('li')
     if (eintrag.get('typ') === 'einnahme') {
       listenpunkt.setAttribute('class', 'einnahme')
@@ -177,17 +150,15 @@ const haushaltsbuch = {
   },
 
   eintraege_anzeigen() {
-    // entferne vorhandene Monatslisten
+    // entferne evtl. vorhandene Monatslisten
     document.querySelectorAll('.monatsliste ul').forEach((eintragsliste) => {
       eintragsliste.remove()
     })
-
     // füge die Einträge in die neue Monatsliste ein
     let eintragsliste = document.createElement('ul')
     for (const eintrag of this.eintraege) {
       eintragsliste.insertAdjacentElement('beforeend', this.html_eintrag_generieren(eintrag))
     }
-
     // füge die Monatsliste in article.monatliste ein
     document.querySelector('.monatsliste').insertAdjacentElement('afterbegin', eintragsliste)
   },
@@ -200,11 +171,17 @@ const haushaltsbuch = {
     this.eintraege.forEach(function (eintrag) {
       switch (eintrag.get('typ')) {
         case 'einnahme':
-          neue_gesamtbilanz.set('einnahmen', neue_gesamtbilanz.get('einnahmen') + eintrag.get('betrag'))
+          neue_gesamtbilanz.set(
+            'einnahmen',
+            neue_gesamtbilanz.get('einnahmen') + eintrag.get('betrag')
+          )
           neue_gesamtbilanz.set('bilanz', neue_gesamtbilanz.get('bilanz') + eintrag.get('betrag'))
           break
         case 'ausgabe':
-          neue_gesamtbilanz.set('ausgaben', neue_gesamtbilanz.get('ausgaben') + eintrag.get('betrag'))
+          neue_gesamtbilanz.set(
+            'ausgaben',
+            neue_gesamtbilanz.get('ausgaben') + eintrag.get('betrag')
+          )
           neue_gesamtbilanz.set('bilanz', neue_gesamtbilanz.get('bilanz') - eintrag.get('betrag'))
           break
         default:
@@ -215,13 +192,33 @@ const haushaltsbuch = {
     this.gesamtbilanz = neue_gesamtbilanz
   },
 
-  gesamtbilanz_ausgeben() {
-    console.log(
-      `Einnahmen: ${(this.gesamtbilanz.get('einnahmen') / 100).toFixed(2)} €\n` +
-        `Ausgaben: ${(this.gesamtbilanz.get('ausgaben') / 100).toFixed(2)} €\n` +
-        `Bilanz: ${(this.gesamtbilanz.get('bilanz') / 100).toFixed(2)} €\n` +
-        `Bilanz ist positiv: ${this.gesamtbilanz.get('bilanz') / 100 >= 0}`
-    )
+  html_gesamtbilanz_generieren() {
+    let gesamtbilanz = document.createElement('gesamtbilanz')
+    gesamtbilanz.setAttribute('id', 'gesamtbilanz')
+    gesamtbilanz.innerHTML = `
+    <h1>Gesamtbilanz</h1>
+    <div class="gesamtbilanz-zeile einnahmen">
+      <span>Einnahmen:</span>
+      <span>${(this.gesamtbilanz.get('einnahmen') / 100).toFixed(2)} €</span>
+    </div>
+    <div class="gesamtbilanz-zeile ausgaben">
+      <span>Ausgaben:</span>
+      <span>${(this.gesamtbilanz.get('ausgaben') / 100).toFixed(2)} €</span>
+    </div>
+    <div class="gesamtbilanz-zeile bilanz">
+      <span>Bilanz:</span>
+      <span class=${this.gesamtbilanz.get('bilanz') / 100 >= 0 ? 'positiv' : 'negativ'}>
+      ${(this.gesamtbilanz.get('bilanz') / 100).toFixed(2)} €</span>
+    </div>
+    `
+    return gesamtbilanz
+  },
+
+  gesamtbilanz_anzeigen() {
+    // entferne evtl. vorhandene Gesamtbilanz und füge sie neu ein
+    document.querySelector('#gesamtbilanz').remove()
+    let body = document.querySelector('body')
+    body.insertAdjacentElement('beforeend', this.html_gesamtbilanz_generieren())
   },
 
   eintrag_hinzufuegen() {
@@ -231,18 +228,10 @@ const haushaltsbuch = {
         this.eintraege_sortieren()
         this.eintraege_anzeigen()
         this.gesamtbilanz_erstellen()
-        this.gesamtbilanz_ausgeben()
+        this.gesamtbilanz_anzeigen()
       }
     } while (confirm('Weiteren Eintrag hinzufügen?'))
   },
 }
 
 haushaltsbuch.eintrag_hinzufuegen()
-console.log(haushaltsbuch)
-
-// (() => {
-//   eintrag_erfassen();
-//   eintrag_ausgeben(titel, typ, betrag, datum);
-//   eintrag_mit_gesamtbilanz_verrechnen(typ, betrag);
-//   gesamtbilanz_ausgeben(einnahmen, ausgaben, bilanz);
-// })();
