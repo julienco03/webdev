@@ -18,9 +18,7 @@ const haushaltsbuch = {
       this.eintraege.push(neuer_eintrag)
     } else {
       console.log('Folgende Fehler wurden gefunden:\n')
-      this.fehler.forEach((fehler) => {
-        console.log('>> ' + fehler)
-      })
+      this.fehler.forEach((fehler) => console.log('>> ' + fehler))
     }
   },
 
@@ -98,7 +96,7 @@ const haushaltsbuch = {
   },
 
   eintraege_sortieren() {
-    this.eintraege.sort(function (eintrag1, eintrag2) {
+    this.eintraege.sort((eintrag1, eintrag2) => {
       if (eintrag1.get('datum') > eintrag2.get('datum')) {
         return -1
       } else if (eintrag1.get('datum') < eintrag2.get('datum')) {
@@ -110,7 +108,6 @@ const haushaltsbuch = {
   },
 
   html_eintrag_generieren(eintrag) {
-    // <li class="..."></li>
     let listenpunkt = document.createElement('li')
     if (eintrag.get('typ') === 'einnahme') {
       listenpunkt.setAttribute('class', 'einnahme')
@@ -151,14 +148,12 @@ const haushaltsbuch = {
 
   eintraege_anzeigen() {
     // entferne evtl. vorhandene Monatslisten
-    document.querySelectorAll('.monatsliste ul').forEach((eintragsliste) => {
-      eintragsliste.remove()
-    })
+    document.querySelectorAll('.monatsliste ul').forEach((eintragsliste) => eintragsliste.remove())
     // füge die Einträge in die neue Monatsliste ein
     let eintragsliste = document.createElement('ul')
-    for (const eintrag of this.eintraege) {
+    this.eintraege.forEach((eintrag) => {
       eintragsliste.insertAdjacentElement('beforeend', this.html_eintrag_generieren(eintrag))
-    }
+    })
     // füge die Monatsliste in article.monatliste ein
     document.querySelector('.monatsliste').insertAdjacentElement('afterbegin', eintragsliste)
   },
@@ -168,7 +163,7 @@ const haushaltsbuch = {
     neue_gesamtbilanz.set('einnahmen', 0)
     neue_gesamtbilanz.set('ausgaben', 0)
     neue_gesamtbilanz.set('bilanz', 0)
-    this.eintraege.forEach(function (eintrag) {
+    this.eintraege.forEach((eintrag) => {
       switch (eintrag.get('typ')) {
         case 'einnahme':
           neue_gesamtbilanz.set(
