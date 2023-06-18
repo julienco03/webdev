@@ -1,31 +1,72 @@
 'use strict'
 
 const eingabeformular = {
+  absenden_event_hinzufuegen(eingabeformular) {
+    let formular = eingabeformular.querySelector('#eingabeformular')
+    formular.addEventListener('submit', (e) => {
+      e.preventDefault()
+      let formular_daten = this.formulardaten_verarbeiten(this.formulardaten_holen())
+      console.log('Formular-Daten:', formular_daten)
+      let formular_fehler = this.formulardaten_validieren(formular_daten)
+      console.log('Formular-Fehler:', formular_fehler)
+      if (formular_fehler.length === 0) {
+        haushaltsbuch.eintrag_hinzufuegen(formular_daten)
+        formular.reset()
+        this.datum_aktualisieren()
+      } else {
+      }
+    })
+  },
+
   formulardaten_holen() {
     return {
       titel: document.querySelector('#titel').value,
       einnahme: document.querySelector('#einnahme').checked,
       ausgabe: document.querySelector('#ausgabe').checked,
-      betrag: document.querySelector('#betrag').value,
+      betrag: document.querySelector('#betrag').valueAsNumber,
       datum: document.querySelector('#datum').valueAsDate,
     }
   },
 
   formulardaten_verarbeiten(formulardaten) {
+    let typ
+    if (formulardaten.einnahme === true) {
+      typ = 'einnahme'
+    } else if (formulardaten.ausgabe === true) {
+      typ = 'ausgabe'
+    } else {
+      typ = ''
+    }
     return {
-      titel: formulardaten['titel'].trim(),
-      typ: formulardaten.einnahme === true ? 'einnahme' : 'ausgabe',
-      betrag: parseFloat(formulardaten.betrag) * 100,
+      titel: formulardaten.titel.trim(),
+      typ: typ,
+      betrag: formulardaten.betrag * 100,
       datum: formulardaten.datum,
     }
   },
 
-  absenden_event_hinzufuegen(eingabeformular) {
-    eingabeformular.querySelector('#eingabeformular').addEventListener('submit', (e) => {
-      e.preventDefault()
-      let formulardaten = this.formulardaten_verarbeiten(this.formulardaten_holen())
-      console.log(formulardaten)
-    })
+  formulardaten_validieren(formulardaten) {
+    let fehler = []
+    if (formulardaten.titel === '') {
+      fehler.push('Kein Titel!')
+    }
+    if (formulardaten.typ.match(/^(?:einnahme|ausgabe)$/) === null) {
+      fehler.push('Falscher Typ!')
+    }
+    if (isNaN(formulardaten.betrag)) {
+      fehler.push('Kein Betrag!')
+    }
+    if (formulardaten.datum === null) {
+      fehler.push('Kein Datum!')
+    }
+    return fehler
+  },
+
+  datum_aktualisieren() {
+    let datum_input = document.querySelector('#datum')
+    if (datum_input !== null) {
+      datum_input.valueAsDate = new Date()
+    }
   },
 
   html_generieren() {
@@ -46,6 +87,7 @@ const eingabeformular = {
              placeholder="z.B. Einkaufen"
              size="10"
              title="Titel des Eintrags"
+             required
            />
            <input
              type="radio"
@@ -54,6 +96,7 @@ const eingabeformular = {
              value="einnahme"
              form="eingabeformular"
              title="Typ des Eintrags"
+             checked
            />
            <label for="einnahme" title="Typ des Eintrags">Einnahme</label>
            <input
@@ -63,7 +106,6 @@ const eingabeformular = {
              value="ausgabe"
              form="eingabeformular"
              title="Typ des Eintrags"
-             checked
            />
            <label for="ausgabe" title="Typ des Eintrags">Ausgabe</label>
          </div>
@@ -80,6 +122,7 @@ const eingabeformular = {
              size="10"
              step="0.01"
              title="Betrag des Eintrags (max. zwei Nachkommastellen, kein €-Zeichen)"
+             required
            />
            <label for="datum">Datum</label>
            <input
@@ -96,7 +139,6 @@ const eingabeformular = {
        <div class="eingabeformular-zeile">
          <button class="standard" type="submit" form="eingabeformular">Hinzufügen</button>
        </div>`
-
     this.absenden_event_hinzufuegen(section)
     return section
   },

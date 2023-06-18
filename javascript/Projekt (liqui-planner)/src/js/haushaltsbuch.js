@@ -1,100 +1,25 @@
 'use strict'
 
 const haushaltsbuch = {
-  gesamtbilanz: new Map(),
   eintraege: [],
-  fehler: [],
+  gesamtbilanz: new Map(),
 
-  eintrag_erfassen() {
-    this.fehler = []
+  eintrag_hinzufuegen(formulardaten) {
     let neuer_eintrag = new Map()
-    neuer_eintrag.set('titel', this.titel_verarbeiten(prompt('Titel:')))
-    neuer_eintrag.set('typ', this.typ_verarbeiten(prompt('Typ (Einnahme oder Ausgabe):')))
-    neuer_eintrag.set('betrag', this.betrag_verarbeiten(prompt('Betrag (in Euro):')))
-    neuer_eintrag.set('datum', this.datum_verarbeiten(prompt('Datum (YYYY-MM-DD):')))
+    neuer_eintrag.set('titel', formulardaten.titel)
+    neuer_eintrag.set('typ', formulardaten.typ)
+    neuer_eintrag.set('betrag', formulardaten.betrag)
+    neuer_eintrag.set('datum', formulardaten.datum)
     neuer_eintrag.set('timestamp', Date.now())
-    if (this.fehler.length === 0) {
-      this.eintraege.push(neuer_eintrag)
-    } else {
-      console.log('Folgende Fehler wurden gefunden:\n')
-      this.fehler.forEach((fehler) => console.log('>> ' + fehler))
-    }
-  },
-
-  titel_verarbeiten(titel) {
-    if (titel != null) {
-      titel = titel.trim()
-    }
-    if (this.titel_validieren(titel)) {
-      return titel
-    } else {
-      this.fehler.push('Kein Titel angegeben!')
-    }
-  },
-  titel_validieren(titel) {
-    if (titel !== '') {
-      return true
-    } else {
-      return false
-    }
-  },
-
-  typ_verarbeiten(typ) {
-    if (typ != null) {
-      typ = typ.trim().toLowerCase()
-    }
-    if (this.typ_validieren(typ)) {
-      return typ
-    } else {
-      this.fehler.push(`Ungültiger Eintrags-Typ angegeben: "${typ}"`)
-    }
-  },
-  typ_validieren(typ) {
-    if (typ != null && typ.match(/^(?:einnahme|ausgabe)$/)) {
-      return true
-    } else {
-      return false
-    }
-  },
-
-  betrag_verarbeiten(betrag) {
-    if (betrag != null) {
-      betrag = betrag.trim()
-    }
-    if (this.betrag_validieren(betrag)) {
-      return parseFloat(betrag.replace(',', '.')) * 100
-    } else {
-      this.fehler.push(`Ungültiger Betrag: ${betrag} €`)
-    }
-  },
-  betrag_validieren(betrag) {
-    if (betrag != null && betrag.match(/^\d+(?:(?:,|.)\d{1,2})?$/) !== null) {
-      return true
-    } else {
-      return false
-    }
-  },
-
-  datum_verarbeiten(datum) {
-    if (datum != null) {
-      datum = datum.trim()
-    }
-    if (this.datum_validieren(datum)) {
-      return new Date(`${datum} 00:00:00`)
-    } else {
-      this.fehler.push(`Ungültiges Datum: "${datum}"`)
-      return false
-    }
-  },
-  datum_validieren(datum) {
-    if (datum != null && datum.match(/^\d{4}-\d{2}-\d{2}$/) !== null) {
-      return true
-    } else {
-      return false
-    }
+    this.eintraege.push(neuer_eintrag)
+    this.eintraege_sortieren()
+    this.eintraege_anzeigen()
+    this.gesamtbilanz_erstellen()
+    this.gesamtbilanz_anzeigen()
   },
 
   eintraege_sortieren() {
+    // Einträge nach Datum absteigend sortieren
     this.eintraege.sort((eintrag1, eintrag2) => {
       if (eintrag1.get('datum') > eintrag2.get('datum')) {
         return -1
@@ -146,14 +71,14 @@ const haushaltsbuch = {
   },
 
   eintraege_anzeigen() {
-    // entferne evtl. vorhandene Monatslisten
+    // entferne vorhandene Monatslisten
     document.querySelectorAll('.monatsliste ul').forEach((eintragsliste) => eintragsliste.remove())
-    // füge die Einträge in die neue Monatsliste ein
+    // füge die einzelnen Einträge in die neue Monatsliste ein
     let eintragsliste = document.createElement('ul')
     this.eintraege.forEach((eintrag) => {
       eintragsliste.insertAdjacentElement('beforeend', this.html_eintrag_generieren(eintrag))
     })
-    // füge die Monatsliste in article.monatliste ein
+    // füge die neue Monatsliste in article.monatliste ein
     document.querySelector('.monatsliste').insertAdjacentElement('afterbegin', eintragsliste)
   },
 
@@ -209,21 +134,9 @@ const haushaltsbuch = {
   },
 
   gesamtbilanz_anzeigen() {
-    // entferne evtl. vorhandene Gesamtbilanz und füge sie neu ein
+    // entferne vorhandene Gesamtbilanz und füge sie neu ein
     document.querySelector('#gesamtbilanz').remove()
     let body = document.querySelector('body')
     body.insertAdjacentElement('beforeend', this.html_gesamtbilanz_generieren())
-  },
-
-  eintrag_hinzufuegen() {
-    do {
-      this.eintrag_erfassen()
-      if (this.fehler.length === 0) {
-        this.eintraege_sortieren()
-        this.eintraege_anzeigen()
-        this.gesamtbilanz_erstellen()
-        this.gesamtbilanz_anzeigen()
-      }
-    } while (confirm('Weiteren Eintrag hinzufügen?'))
   },
 }
