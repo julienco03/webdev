@@ -67,7 +67,29 @@ const haushaltsbuch = {
     icon.setAttribute('class', 'fas fa-trash')
     button.insertAdjacentElement('afterbegin', icon)
 
+    this.eintrag_entfernen_event_hinzufuegen(listenpunkt)
     return listenpunkt
+  },
+
+  eintrag_entfernen_event_hinzufuegen(listenpunkt) {
+    listenpunkt.querySelector('.entfernen-button').addEventListener('click', (e) => {
+      let timestamp = e.target.parentElement.getAttribute('data-timestamp')
+      this.eintrag_entfernen(timestamp)
+    })
+  },
+
+  eintrag_entfernen(timestamp) {
+    let index
+    for (let i = 0; i < this.eintraege.length; i++) {
+      if (this.eintraege[i].get('timestamp') === parseInt(timestamp)) {
+        index = i
+        break
+      }
+    }
+    this.eintraege.splice(index, 1)
+    this.eintraege_anzeigen()
+    this.gesamtbilanz_erstellen()
+    this.gesamtbilanz_anzeigen()
   },
 
   eintraege_anzeigen() {
