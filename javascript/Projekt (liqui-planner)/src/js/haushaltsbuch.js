@@ -33,11 +33,9 @@ const haushaltsbuch = {
 
   html_eintrag_generieren(eintrag) {
     let listenpunkt = document.createElement('li')
-    if (eintrag.get('typ') === 'einnahme') {
-      listenpunkt.setAttribute('class', 'einnahme')
-    } else if (eintrag.get('typ') === 'ausgabe') {
-      listenpunkt.setAttribute('class', 'ausgabe')
-    }
+    eintrag.get('typ') === 'einnahme'
+      ? listenpunkt.setAttribute('class', 'einnahme')
+      : listenpunkt.setAttribute('class', 'ausgabe')
     listenpunkt.setAttribute('data-timestamp', eintrag.get('timestamp'))
 
     let datum = document.createElement('span')
@@ -158,7 +156,8 @@ const haushaltsbuch = {
   gesamtbilanz_anzeigen() {
     // entferne vorhandene Gesamtbilanz und füge sie neu ein
     document.querySelector('#gesamtbilanz').remove()
-    let body = document.querySelector('body')
-    body.insertAdjacentElement('beforeend', this.html_gesamtbilanz_generieren())
+    document
+      .querySelector('body')
+      .insertAdjacentElement('beforeend', this.html_gesamtbilanz_generieren())
   },
 }

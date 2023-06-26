@@ -22,24 +22,15 @@ const eingabeformular = {
     return {
       titel: document.querySelector('#titel').value,
       einnahme: document.querySelector('#einnahme').checked,
-      ausgabe: document.querySelector('#ausgabe').checked,
       betrag: document.querySelector('#betrag').valueAsNumber,
       datum: document.querySelector('#datum').valueAsDate,
     }
   },
 
   formulardaten_verarbeiten(formulardaten) {
-    let typ
-    if (formulardaten.einnahme === true) {
-      typ = 'einnahme'
-    } else if (formulardaten.ausgabe === true) {
-      typ = 'ausgabe'
-    } else {
-      typ = ''
-    }
     return {
       titel: formulardaten.titel.trim(),
-      typ: typ,
+      typ: formulardaten.einnahme === true ? 'einnahme' : 'ausgabe',
       betrag: formulardaten.betrag * 100,
       datum: formulardaten.datum,
     }
@@ -49,9 +40,6 @@ const eingabeformular = {
     let fehler = []
     if (formulardaten.titel === '') {
       fehler.push('Kein Titel!')
-    }
-    if (formulardaten.typ.match(/^(?:einnahme|ausgabe)$/) === null) {
-      fehler.push('Falscher Typ!')
     }
     if (isNaN(formulardaten.betrag)) {
       fehler.push('Kein Betrag!')
@@ -181,8 +169,10 @@ const eingabeformular = {
   },
 
   anzeigen() {
-    document
-      .querySelector('#navigationsleiste')
-      .insertAdjacentElement('afterend', this.html_generieren())
+    let navigationsleiste = document.querySelector('#navigationsleiste')
+    if (navigationsleiste !== null) {
+      navigationsleiste.insertAdjacentElement('afterend', this.html_generieren())
+      this.datum_aktualisieren()
+    }
   },
 }
