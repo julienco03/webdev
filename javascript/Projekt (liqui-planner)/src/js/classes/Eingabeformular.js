@@ -11,13 +11,14 @@ class Eingabeformular {
       e.preventDefault() // verhindere das Standardverhalten beim Absenden des Formulars
       let formular_daten = this._formulardaten_verarbeiten(this._formulardaten_holen())
       let formular_fehler = this._formulardaten_validieren(formular_daten)
-      this._fehlerbox_entfernen()
+      let fehler = new Fehler('Folgende Felder wurden nicht korrekt ausgefüllt:', formular_fehler)
+      fehler.entfernen()
       if (formular_fehler.length === 0) {
         haushaltsbuch.eintrag_hinzufuegen(formular_daten)
         formular.reset()
         this._datum_aktualisieren()
       } else {
-        this._fehlerbox_anzeigen(formular_fehler)
+        fehler.anzeigen()
       }
     })
   }
@@ -79,23 +80,6 @@ class Eingabeformular {
     fehlerbox.insertAdjacentElement('beforeend', fehlerliste)
 
     return fehlerbox
-  }
-
-  _fehlerbox_anzeigen(formular_fehler) {
-    let eingabeformular_container = document.querySelector('#eingabeformular')
-    if (eingabeformular_container !== null) {
-      eingabeformular_container.insertAdjacentElement(
-        'afterbegin',
-        this._html_fehlerbox_generieren(formular_fehler)
-      )
-    }
-  }
-
-  _fehlerbox_entfernen() {
-    let fehlerbox = document.querySelector('.fehlerbox')
-    if (fehlerbox !== null) {
-      fehlerbox.remove()
-    }
   }
 
   _html_generieren() {
