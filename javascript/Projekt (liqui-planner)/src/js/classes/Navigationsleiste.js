@@ -1,9 +1,5 @@
 'use strict'
 
-/* <nav id="navigationsleiste">
-    <a href="index.html"><span id="markenname">Liqui-Planner</span></a>
-</nav> */
-
 class Navigationsleiste {
   constructor() {
     this._html = this._html_generieren()
@@ -18,7 +14,14 @@ class Navigationsleiste {
 
   anzeigen() {
     let body = document.querySelector('body')
-    if (body != null) {
+    if (body !== null) {
+      body.insertAdjacentElement('afterbegin', this._html)
+    }
+  }
+
+  anzeigen() {
+    let body = document.querySelector('body')
+    if (body !== null) {
       body.insertAdjacentElement('afterbegin', this._html)
     }
   }

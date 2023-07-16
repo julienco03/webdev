@@ -34,7 +34,7 @@ class Fehler {
   }
 
   anzeigen() {
-    let eingabeformular_container = document.querySelector('#eingabeformular')
+    let eingabeformular_container = document.querySelector('#eingabeformular-container')
     if (eingabeformular_container !== null) {
       eingabeformular_container.insertAdjacentElement('afterbegin', this._html)
     }

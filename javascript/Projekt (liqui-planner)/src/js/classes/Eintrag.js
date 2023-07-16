@@ -10,6 +10,30 @@ class Eintrag {
     this._html = this._html_generieren()
   }
 
+  titel() {
+    return this._titel
+  }
+
+  typ() {
+    return this._typ
+  }
+
+  betrag() {
+    return this._betrag
+  }
+
+  datum() {
+    return this._datum
+  }
+
+  timestamp() {
+    return this._timestamp
+  }
+
+  html() {
+    return this._html
+  }
+
   _html_generieren() {
     let listenpunkt = document.createElement('li')
     this._typ === 'einnahme'
@@ -54,29 +78,5 @@ class Eintrag {
       let timestamp = e.target.parentElement.getAttribute('data-timestamp')
       haushaltsbuch.eintrag_entfernen(timestamp)
     })
-  }
-
-  titel() {
-    return this._titel
-  }
-
-  typ() {
-    return this._typ
-  }
-
-  betrag() {
-    return this._betrag
-  }
-
-  datum() {
-    return this._datum
-  }
-
-  timestamp() {
-    return this._timestamp
-  }
-
-  html() {
-    return this._html
   }
 }

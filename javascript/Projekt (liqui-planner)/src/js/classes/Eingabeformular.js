@@ -2,25 +2,7 @@
 
 class Eingabeformular {
   constructor() {
-    this.html = this._html_generieren()
-  }
-
-  _absenden_event_hinzufuegen(eingabeformular) {
-    let formular = eingabeformular.querySelector('#eingabeformular')
-    formular.addEventListener('submit', (e) => {
-      e.preventDefault() // verhindere das Standardverhalten beim Absenden des Formulars
-      let formular_daten = this._formulardaten_verarbeiten(this._formulardaten_holen())
-      let formular_fehler = this._formulardaten_validieren(formular_daten)
-      let fehler = new Fehler('Folgende Felder wurden nicht korrekt ausgefüllt:', formular_fehler)
-      fehler.entfernen()
-      if (formular_fehler.length === 0) {
-        haushaltsbuch.eintrag_hinzufuegen(formular_daten)
-        formular.reset()
-        this._datum_aktualisieren()
-      } else {
-        fehler.anzeigen()
-      }
-    })
+    this._html = this._html_generieren()
   }
 
   _formulardaten_holen() {
@@ -80,6 +62,24 @@ class Eingabeformular {
     fehlerbox.insertAdjacentElement('beforeend', fehlerliste)
 
     return fehlerbox
+  }
+
+  _absenden_event_hinzufuegen(eingabeformular) {
+    let formular = eingabeformular.querySelector('#eingabeformular')
+    formular.addEventListener('submit', (e) => {
+      e.preventDefault() // verhindere das Standardverhalten des Formulars beim Absenden
+      let formular_daten = this._formulardaten_verarbeiten(this._formulardaten_holen())
+      let formular_fehler = this._formulardaten_validieren(formular_daten)
+      let fehler = new Fehler('Folgende Felder wurden nicht korrekt ausgefüllt:', formular_fehler)
+      fehler.entfernen()
+      if (formular_fehler.length === 0) {
+        haushaltsbuch.eintrag_hinzufuegen(formular_daten)
+        formular.reset()
+        this._datum_aktualisieren()
+      } else {
+        fehler.anzeigen()
+      }
+    })
   }
 
   _html_generieren() {
@@ -152,14 +152,16 @@ class Eingabeformular {
         <div class="eingabeformular-zeile">
           <button class="standard" type="submit" form="eingabeformular">Hinzufügen</button>
         </div>`
+
     this._absenden_event_hinzufuegen(eingabeformular)
+
     return eingabeformular
   }
 
   anzeigen() {
     let navigationsleiste = document.querySelector('body')
     if (navigationsleiste !== null) {
-      navigationsleiste.insertAdjacentElement('afterbegin', this._html_generieren())
+      navigationsleiste.insertAdjacentElement('afterbegin', this._html)
       this._datum_aktualisieren()
     }
   }
