@@ -7,19 +7,20 @@ class Haushaltsbuch {
     this._eingabeformular = new Eingabeformular()
     this._monatslistensammlung = new Monatslistensammlung()
     this._gesamtbilanz = new Gesamtbilanz()
-    console.log(this)
+    this._wiederherstellen()
   }
 
-  eintrag_hinzufuegen(formulardaten) {
+  eintrag_hinzufuegen(eintragsdaten) {
     let neuer_eintrag = new Eintrag(
-      formulardaten.titel,
-      formulardaten.typ,
-      formulardaten.betrag,
-      formulardaten.datum
+      eintragsdaten.titel,
+      eintragsdaten.typ,
+      eintragsdaten.betrag,
+      eintragsdaten.datum
     )
     this._eintraege.push(neuer_eintrag)
     this._monatslistensammlung.aktualisieren(this._eintraege)
     this._gesamtbilanz.aktualisieren(this._eintraege)
+    this._speichern()
   }
 
   eintrag_entfernen(timestamp) {
@@ -30,9 +31,28 @@ class Haushaltsbuch {
         break
       }
     }
-    this._eintraege.splice(start_index, 1)
+    this._eintraege.splice(index, 1)
     this._monatslistensammlung.aktualisieren(this._eintraege)
     this._gesamtbilanz.aktualisieren(this._eintraege)
+    this._speichern()
+  }
+
+  _speichern() {
+    localStorage.setItem('eintraege', JSON.stringify(this._eintraege))
+  }
+
+  _wiederherstellen() {
+    let gespeicherte_eintraege = localStorage.getItem('eintraege')
+    if (gespeicherte_eintraege !== null) {
+      JSON.parse(gespeicherte_eintraege).forEach((eintrag) => {
+        this.eintrag_hinzufuegen({
+          titel: eintrag._titel,
+          typ: eintrag._typ,
+          betrag: eintrag._betrag,
+          datum: new Date(eintrag._datum),
+        })
+      })
+    }
   }
 
   start() {
