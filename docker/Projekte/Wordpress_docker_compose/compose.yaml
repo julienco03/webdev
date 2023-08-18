@@ -1,0 +1,38 @@
+services:
+  db:
+    image: mariadb
+    environment:
+      - MARIADB_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MARIADB_DATABASE=blog
+      - MARIADB_USER=blog
+      - MARIADB_PASSWORD=${DB_PASSWORD}
+    restart: on-failure:10
+    volumes:
+      - db-vol:/var/lib/mysql:rw
+
+  pma:
+    image: phpmyadmin
+    environment:
+      - PMA_HOST=db
+    ports:
+      - 6080:80
+    restart: on-failure:10
+    depends_on:
+      - db
+
+  wp:
+    image: wordpress
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_NAME=blog
+      - WORDPRESS_DB_USER=blog
+      - WORDPRESS_DB_PASSWORD=${DB_PASSWORD}
+    ports:
+      - 6081:80
+    restart: on-failure:10
+    depends_on:
+      - db
+
+volumes:
+  db-vol:
+    name: db-vol-name
