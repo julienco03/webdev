@@ -1,0 +1,19 @@
+services:
+  db:
+    image: redis:latest
+    expose:
+      - 6379
+
+  webapp:
+    build: ./flask-app
+    expose:
+      - 5000
+    deploy:
+      replicas: 3
+    depends_on:
+      - db
+
+  nginx:
+    build: ./nginx-proxy
+    ports:
+      - 8070:80
