@@ -1,19 +1,38 @@
 import PySimpleGUI as sg
 import functions
 import time
+import sys
+import os
+
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
+if not os.path.exists("todos.txt"):
+    with open("todos.txt", "w") as file:
+        pass
 
 sg.theme("DarkBlue13")
 
 clock = sg.Text("", key="clock")
 label = sg.Text("Type in a To-Do:")
 input_box = sg.InputText(tooltip="Enter todo", key="todo")
-add_button = sg.Button(image_source="add.png", image_size=(100, 40), tooltip="Add todo", key="Add")
+add_button = sg.Button(image_source=resource_path("add.png"), image_size=(100, 40), tooltip="Add todo", key="Add")
 list_box = sg.Listbox(values=functions.get_todos(),
                       key="todos",
                       enable_events=True,
                       size=(44, 10))
 edit_button = sg.Button("Edit")
-complete_button = sg.Button(image_source="complete.png", image_size=(100, 52), tooltip="Complete todo", key="Complete")
+complete_button = sg.Button(image_source=resource_path("complete.png"), image_size=(100, 52), tooltip="Complete todo",
+                            key="Complete")
 exit_button = sg.Button("Exit")
 
 window = sg.Window("My To-Do App",
