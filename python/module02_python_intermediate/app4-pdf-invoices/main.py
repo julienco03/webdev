@@ -22,6 +22,7 @@ for filepath in filepaths:
     # Display invoice date
     pdf.set_font(family="Times", size=16, style="B")
     pdf.cell(w=50, h=8, txt=f"Date {invoice_date}", border=0, ln=1)
+    pdf.ln(h=3)
 
     # Get data from Excel file
     df = pd.read_excel(filepath, sheet_name="Sheet 1")
@@ -45,6 +46,29 @@ for filepath in filepaths:
         pdf.cell(w=40, h=8, txt=str(row["amount_purchased"]), border=1)
         pdf.cell(w=30, h=8, txt=str(row["price_per_unit"]), border=1)
         pdf.cell(w=30, h=8, txt=str(row["total_price"]), border=1, ln=1)
+
+    # Add row for total sum
+    total_sum = df["total_price"].sum()
+    pdf.set_font(family="Times", size=10, style="B")
+    pdf.set_text_color(80, 80, 80)
+    pdf.cell(w=30, h=8, txt="", border=1)
+    pdf.cell(w=60, h=8, txt="", border=1)
+    pdf.cell(w=40, h=8, txt="", border=1)
+    pdf.cell(w=30, h=8, txt="", border=1)
+    pdf.cell(w=30, h=8, txt=str(total_sum), border=1, ln=1)
+
+    pdf.ln(h=10)
+
+    # Add total sum sentence
+    pdf.set_font(family="Times", size=14, style="B")
+    pdf.cell(w=30, h=8, txt=f"The total price is {total_sum}.", border=0, ln=1)
+
+    pdf.ln(h=5)
+
+    # Add company name and logo
+    pdf.set_font(family="Times", size=14, style="B")
+    pdf.cell(w=27, h=8, txt=f"PythonHow", border=0)
+    pdf.image("pythonhow.png", w=10)
 
     # Create the pdf files in PDFs directory
     pdf.output(f"PDFs/{filename}.pdf")
