@@ -7,4 +7,5 @@ Unter dem Formular sind alle Einträge nach dem Erstellungsdatum absteigend aufg
 Hier eine Vorschau des Projekts:
 ![image](image.png)
 
-Weitere Informationen: Zur Persistierung der Daten wird eine MySQL-Datenbank verwendet (siehe _db-connect.php_).
+### Weitere Informationen
+Zur Persistierung der Daten wird eine MySQL-Datenbank verwendet (siehe _db-connect.php_).
