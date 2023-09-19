@@ -4,8 +4,11 @@ import smtplib
 import ssl
 import os
 import time
+import sqlite3
 
 URL = "https://programmer100.pythonanywhere.com/tours/"
+
+connection = sqlite3.connect("data.db")
 
 
 def scrape(url):
@@ -22,13 +25,20 @@ def extract(src):
 
 
 def store(extracted_data):
-    with open("data.txt", "w") as file:
-        file.write(extracted_data + "\n")
+    row = [item.split(",").strip() for item in extracted_data]
+    cursor = connection.cursor()
+    cursor.execute("INSERT INTO events VALUES(?,?,?)", row)
+    connection.commit()
 
 
-def read():
-    with open("data.txt", "r") as file:
-        return file.read()
+def read(extracted_data):
+    row = [item.split(",").strip() for item in extracted_data]
+    band, city, date = row
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM events WHERE band=? AND city=? AND date=?", (band, city, date))
+    rows = cursor.fetchall()
+    print(rows)
+    return rows
 
 
 def send_email(message):
@@ -52,9 +62,10 @@ if __name__ == "__main__":
         extracted = extract(scraped)
 
         if extracted != "No upcoming tours":
-            events = read()
-            if extracted not in events:
-                store(events + extracted)
-                send_email(extracted)
+            row = read(extracted)
+            if not row:
+                store(extracted)
+                send_email(message="Hey, a new event was found!")
 
-        time.sleep(1)
+        # Check every 5 minutes for new events
+        time.sleep(300)
