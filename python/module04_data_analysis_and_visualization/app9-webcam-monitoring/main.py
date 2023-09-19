@@ -1,3 +1,4 @@
+import datetime
 import cv2
 import time
 import glob
@@ -30,7 +31,16 @@ while True:
 
     delta_frame = cv2.absdiff(first_frame, gray_frame_gau)
     thresh_frame = cv2.threshold(delta_frame, 60, 255, cv2.THRESH_BINARY)[1]
-    dil_frame = cv2.dilate(thresh_frame, iterations=2)
+    dil_frame = cv2.dilate(thresh_frame, None, iterations=2)
+
+    now = datetime.now()
+    cv2.putText(img=dil_frame, text=now.strftime("%A"), org=(30, 80),
+                fontFace=cv2.FONT_HERSHEY_PLAIN, fontScale=3, color=(255, 255, 255),
+                thickness=2, lineType=cv2.LINE_AA)
+    cv2.putText(img=dil_frame, text=now.strftime("%H:%M:%S"), org=(30, 140),
+                fontFace=cv2.FONT_HERSHEY_PLAIN, fontScale=3, color=(255, 0, 0),
+                thickness=2, lineType=cv2.LINE_AA)
+
     cv2.imshow("My video", dil_frame)
 
     contours, check = cv2.findContours(dil_frame, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
