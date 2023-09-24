@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QGridLayout, QLineEdit, \
     QPushButton, QMainWindow, QTableWidget, QTableWidgetItem, QDialog, QVBoxLayout, \
-    QComboBox, QMessageBox
-from PyQt6.QtGui import QAction
+    QComboBox, QMessageBox, QToolBar, QStatusBar
+from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtCore import Qt
 import sqlite3
 import sys
@@ -20,7 +20,7 @@ class MainWindow(QMainWindow):
         edit_menu_item = self.menuBar().addMenu("&Edit")
 
         # Add 'File' menu items
-        add_student_action = QAction("Add Student", self)
+        add_student_action = QAction(QIcon("icons/add.png"), "Add Student", self)
         add_student_action.triggered.connect(self.insert_data)
         file_menu_item.addAction(add_student_action)
 
@@ -29,9 +29,15 @@ class MainWindow(QMainWindow):
         help_menu_item.addAction(about_action)
 
         # Add 'Edit' menu items
-        search_action = QAction("Search", self)
+        search_action = QAction(QIcon("icons/search.png"), "Search", self)
         search_action.triggered.connect(self.search)
         edit_menu_item.addAction(search_action)
+
+        # Add toolbar and toolbar elements
+        toolbar = QToolBar()
+        toolbar.setMovable(True)
+        self.addToolBar(toolbar)
+        toolbar.addActions([add_student_action, search_action])
 
         # Add table
         self.table = QTableWidget()
@@ -39,6 +45,30 @@ class MainWindow(QMainWindow):
         self.table.setHorizontalHeaderLabels(["ID", "Name", "Course", "Mobile"])
         self.table.verticalHeader().setVisible(False)
         self.setCentralWidget(self.table)
+
+        # Add status bar
+        self.statusbar = QStatusBar()
+        self.setStatusBar(self.statusbar)
+
+        # Detect a cell click
+        self.table.cellClicked.connect(self.cell_clicked)
+
+    def cell_clicked(self):
+        """ Adds edit and delete buttons to status bar. """
+        edit_button = QPushButton("Edit")
+        edit_button.clicked.connect(self.edit)
+
+        delete_button = QPushButton("Delete")
+        delete_button.clicked.connect(self.delete)
+
+        # Prevent duplicate buttons in status bar
+        children = self.findChildren(QPushButton)
+        if children:
+            for child in children:
+                self.statusbar.removeWidget(child)
+
+        self.statusbar.addWidget(edit_button)
+        self.statusbar.addWidget(delete_button)
 
     def load_data(self):
         """ Loads the database file and inserts the data in the table. """
@@ -51,14 +81,28 @@ class MainWindow(QMainWindow):
                 self.table.setItem(row_number, column_number, QTableWidgetItem(str(column_data)))
         connection.close()
 
-    def insert_data(self):
-        """ Opens a dialog window that allows you to insert a new student into the database. """
+    @staticmethod
+    def insert_data():
+        """ Opens a dialog window that allows you to insert a new student record into the database. """
         dialog = InsertDialog()
         dialog.exec()
 
-    def search(self):
-        """ Opens a dialog window with which you can search for a student. """
+    @staticmethod
+    def search():
+        """ Opens a dialog window that allows you to search for a student record. """
         dialog = SearchDialog()
+        dialog.exec()
+
+    @staticmethod
+    def edit():
+        """ Opens a dialog window that allows you to edit a student record. """
+        dialog = EditDialog()
+        dialog.exec()
+
+    @staticmethod
+    def delete():
+        """ Opens a dialog window that allows you to delete a student record. """
+        dialog = DeleteDialog()
         dialog.exec()
 
 
@@ -144,6 +188,62 @@ class SearchDialog(QDialog):
             msg.setText("No matching records found.")
             msg.setIcon(QMessageBox.Icon.Warning)
             msg.exec()
+
+
+class EditDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Insert Student Data")
+        self.setFixedSize(300, 300)
+
+        layout = QVBoxLayout()
+
+        self.student_name = QLineEdit()
+        self.student_name.setPlaceholderText("Name")
+        layout.addWidget(self.student_name)
+
+        self.course_name = QComboBox()
+        courses = ["Biology", "Math", "Astronomy", "Physics"]
+        self.course_name.addItems(courses)
+        layout.addWidget(self.course_name)
+
+        self.mobile = QLineEdit()
+        self.mobile.setPlaceholderText("Mobile")
+        layout.addWidget(self.mobile)
+
+        submit_button = QPushButton("Submit")
+        submit_button.clicked.connect(self.add_student)
+        layout.addWidget(submit_button)
+
+        self.setLayout(layout)
+
+    def add_student(self):
+        """ Gets the data from the input fields and inserts it in the database. """
+        name = self.student_name.text()
+        course = self.course_name.itemText(self.course_name.currentIndex())
+        mobile = self.mobile.text()
+
+        connection = sqlite3.connect("database.db")
+        cursor = connection.cursor()
+        cursor.execute("INSERT INTO students (name, course, mobile) VALUES (?, ?, ?)",
+                       (name, course, mobile))
+        connection.commit()
+        cursor.close()
+        connection.close()
+
+        # Refresh main window
+        main_window.load_data()
+
+
+class DeleteDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Delete A Student")
+        self.setFixedSize(300, 300)
+
+        layout = QVBoxLayout()
+
+        self.setLayout(layout)
 
 
 app = QApplication(sys.argv)
