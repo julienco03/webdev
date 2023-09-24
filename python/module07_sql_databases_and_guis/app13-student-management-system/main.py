@@ -6,6 +6,12 @@ import sqlite3
 import sys
 
 
+class DatabaseConnection:
+    @staticmethod
+    def connect(database_file="database.db"):
+        return sqlite3.connect(database_file)
+
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -15,22 +21,23 @@ class MainWindow(QMainWindow):
 
         # Add menubar
         file_menu_item = self.menuBar().addMenu("&File")
-        help_menu_item = self.menuBar().addMenu("&Help")
         edit_menu_item = self.menuBar().addMenu("&Edit")
+        help_menu_item = self.menuBar().addMenu("&Help")
 
         # Add 'File' menu items
         add_student_action = QAction(QIcon("icons/add.png"), "Add Student", self)
         add_student_action.triggered.connect(self.insert)
         file_menu_item.addAction(add_student_action)
 
-        # Add 'About' menu items
-        about_action = QAction("About", self)
-        help_menu_item.addAction(about_action)
-
         # Add 'Edit' menu items
         search_action = QAction(QIcon("icons/search.png"), "Search", self)
         search_action.triggered.connect(self.search)
         edit_menu_item.addAction(search_action)
+
+        # Add 'Help' menu items
+        about_action = QAction("About", self)
+        about_action.triggered.connect(self.about)
+        help_menu_item.addAction(about_action)
 
         # Add toolbar and toolbar elements
         toolbar = QToolBar()
@@ -71,7 +78,7 @@ class MainWindow(QMainWindow):
 
     def load_data(self):
         """ Loads the database file and inserts the data in the table. """
-        connection = sqlite3.connect("database.db")
+        connection = DatabaseConnection.connect()
         result = connection.execute("SELECT * FROM students;")
         self.table.setRowCount(0)
         for row_number, row_data in enumerate(result):
@@ -102,6 +109,11 @@ class MainWindow(QMainWindow):
     def delete():
         """ Opens a dialog window that allows you to delete a student record. """
         dialog = DeleteDialog()
+        dialog.exec()
+
+    @staticmethod
+    def about():
+        dialog = AboutDialog()
         dialog.exec()
 
 
@@ -138,7 +150,7 @@ class InsertDialog(QDialog):
         course = self.course_name.itemText(self.course_name.currentIndex())
         mobile = self.mobile.text()
 
-        connection = sqlite3.connect("database.db")
+        connection = DatabaseConnection.connect()
         cursor = connection.cursor()
         cursor.execute("INSERT INTO students (name, course, mobile) VALUES (?, ?, ?)",
                        (name, course, mobile))
@@ -233,7 +245,7 @@ class EditDialog(QDialog):
 
     def update_student(self):
         """ Updates the selected student record with the data provided by the search widget. """
-        connection = sqlite3.connect("database.db")
+        connection = DatabaseConnection.connect()
         cursor = connection.cursor()
 
         cursor.execute("UPDATE students SET name = ?, course = ?, mobile = ? WHERE id = ?",
@@ -276,7 +288,7 @@ class DeleteDialog(QDialog):
 
     def delete_student(self):
         """ Deletes the student record based on the selected cell in the table. """
-        connection = sqlite3.connect("database.db")
+        connection = DatabaseConnection.connect()
         cursor = connection.cursor()
 
         cursor.execute("DELETE FROM students WHERE id = ?", (self.student_id, ))
@@ -295,6 +307,16 @@ class DeleteDialog(QDialog):
         confirmation.setWindowTitle("Success")
         confirmation.setText("Record was deleted successfully.")
         confirmation.exec()
+
+
+class AboutDialog(QMessageBox):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("About")
+        self.setIcon(QMessageBox.Icon.Information)
+        content = "This app was created during the course 'The Python Mega Course'.\n"
+        content += "Feel free to modify and reuse this app."
+        self.setText(content)
 
 
 app = QApplication(sys.argv)
