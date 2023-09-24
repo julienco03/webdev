@@ -1,8 +1,7 @@
-from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QGridLayout, QLineEdit, \
-    QPushButton, QMainWindow, QTableWidget, QTableWidgetItem, QDialog, QVBoxLayout, \
-    QComboBox, QMessageBox, QToolBar, QStatusBar
+from PyQt6.QtWidgets import QApplication, QLineEdit, QPushButton, QMainWindow,\
+    QTableWidget, QTableWidgetItem, QDialog, QVBoxLayout, QComboBox, QMessageBox,\
+    QToolBar, QStatusBar
 from PyQt6.QtGui import QAction, QIcon
-from PyQt6.QtCore import Qt
 import sqlite3
 import sys
 
@@ -147,8 +146,9 @@ class InsertDialog(QDialog):
         cursor.close()
         connection.close()
 
-        # Refresh main window
+        # Refresh main window and close dialog
         main_window.load_data()
+        self.close()
 
 
 class SearchDialog(QDialog):
@@ -171,6 +171,7 @@ class SearchDialog(QDialog):
         self.setLayout(layout)
 
     def search_student(self):
+        """ Selects all cells in the table that contain the searched name. """
         main_window.table.clearSelection()
         student_name = self.student_name.text().lower()
         student_found = False
@@ -193,46 +194,59 @@ class SearchDialog(QDialog):
 class EditDialog(QDialog):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Insert Student Data")
+        self.setWindowTitle("Update Student Data")
         self.setFixedSize(300, 300)
 
         layout = QVBoxLayout()
 
+        # Current row of selected cell
+        index = main_window.table.currentRow()
+
+        # Get id from selected cell
+        self.student_id = main_window.table.item(index, 0).text()
+
+        # Add name widget with current student name
         self.student_name = QLineEdit()
         self.student_name.setPlaceholderText("Name")
+        student_name = main_window.table.item(index, 1).text()
+        self.student_name.setText(student_name)
         layout.addWidget(self.student_name)
 
+        # Add combobox widget with current course selected
         self.course_name = QComboBox()
-        courses = ["Biology", "Math", "Astronomy", "Physics"]
-        self.course_name.addItems(courses)
+        self.course_name.addItems(["Biology", "Math", "Astronomy", "Physics"])
+        course_name = main_window.table.item(index, 2).text()
+        self.course_name.setCurrentText(course_name)
         layout.addWidget(self.course_name)
 
+        # Add mobile number widget with current mobile number selected
         self.mobile = QLineEdit()
         self.mobile.setPlaceholderText("Mobile")
+        mobile = main_window.table.item(index, 3).text()
+        self.mobile.setText(mobile)
         layout.addWidget(self.mobile)
 
         submit_button = QPushButton("Submit")
-        submit_button.clicked.connect(self.add_student)
+        submit_button.clicked.connect(self.update_student)
         layout.addWidget(submit_button)
 
         self.setLayout(layout)
 
-    def add_student(self):
-        """ Gets the data from the input fields and inserts it in the database. """
-        name = self.student_name.text()
-        course = self.course_name.itemText(self.course_name.currentIndex())
-        mobile = self.mobile.text()
-
+    def update_student(self):
+        """ Updates the selected student record with the data provided by the search widget. """
         connection = sqlite3.connect("database.db")
         cursor = connection.cursor()
-        cursor.execute("INSERT INTO students (name, course, mobile) VALUES (?, ?, ?)",
-                       (name, course, mobile))
+
+        cursor.execute("UPDATE students SET name = ?, course = ?, mobile = ? WHERE id = ?",
+                       (self.student_name.text(), self.course_name.currentText(), self.mobile.text(), self.student_id))
+
         connection.commit()
         cursor.close()
         connection.close()
 
-        # Refresh main window
+        # Refresh main window and close dialog
         main_window.load_data()
+        self.close()
 
 
 class DeleteDialog(QDialog):
