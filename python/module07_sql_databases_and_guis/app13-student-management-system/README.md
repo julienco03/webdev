@@ -1,5 +1,5 @@
 # What is this project about?
-This project represents a simple student managment system. For this it uses PyQt6 as GUI library and an SQL database.  
+This project represents a simple student managment system. For this it uses PyQt6 as GUI library and an SQLite database.  
 The user can create, edit, search and delete records. All records are displayed in a table.
 
 Here's a preview:  
