@@ -1,7 +1,8 @@
 from PyQt6.QtWidgets import QApplication, QLabel, QWidget, QGridLayout, QLineEdit, \
     QPushButton, QMainWindow, QTableWidget, QTableWidgetItem, QDialog, QVBoxLayout, \
-    QComboBox
+    QComboBox, QMessageBox
 from PyQt6.QtGui import QAction
+from PyQt6.QtCore import Qt
 import sqlite3
 import sys
 
@@ -13,16 +14,24 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Student Management System")
         self.setMinimumSize(600, 400)
 
-        # Add menubar and menu items
+        # Add menubar
         file_menu_item = self.menuBar().addMenu("&File")
         help_menu_item = self.menuBar().addMenu("&Help")
+        edit_menu_item = self.menuBar().addMenu("&Edit")
 
+        # Add 'File' menu items
         add_student_action = QAction("Add Student", self)
         add_student_action.triggered.connect(self.insert_data)
         file_menu_item.addAction(add_student_action)
 
+        # Add 'About' menu items
         about_action = QAction("About", self)
         help_menu_item.addAction(about_action)
+
+        # Add 'Edit' menu items
+        search_action = QAction("Search", self)
+        search_action.triggered.connect(self.search)
+        edit_menu_item.addAction(search_action)
 
         # Add table
         self.table = QTableWidget()
@@ -43,8 +52,13 @@ class MainWindow(QMainWindow):
         connection.close()
 
     def insert_data(self):
-        """ Opens a dialog with input fields and adds the data as a new row to the table. """
+        """ Opens a dialog window that allows you to insert a new student into the database. """
         dialog = InsertDialog()
+        dialog.exec()
+
+    def search(self):
+        """ Opens a dialog window with which you can search for a student. """
+        dialog = SearchDialog()
         dialog.exec()
 
 
@@ -91,6 +105,45 @@ class InsertDialog(QDialog):
 
         # Refresh main window
         main_window.load_data()
+
+
+class SearchDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Search For A Student")
+        self.setFixedSize(300, 300)
+
+        layout = QVBoxLayout()
+
+        self.student_name = QLineEdit()
+        self.student_name.setPlaceholderText("Text")
+
+        search_button = QPushButton("Search")
+        search_button.clicked.connect(self.search_student)
+
+        layout.addWidget(self.student_name)
+        layout.addWidget(search_button)
+
+        self.setLayout(layout)
+
+    def search_student(self):
+        main_window.table.clearSelection()
+        student_name = self.student_name.text().lower()
+        student_found = False
+
+        for row in range(main_window.table.rowCount()):
+            item = main_window.table.item(row, 1)
+            if item and student_name in item.text().lower():
+                student_found = True
+                for column in range(main_window.table.columnCount()):
+                    main_window.table.item(row, column).setSelected(True)
+
+        if not student_found:
+            msg = QMessageBox()
+            msg.setWindowTitle("No Records")
+            msg.setText("No matching records found.")
+            msg.setIcon(QMessageBox.Icon.Warning)
+            msg.exec()
 
 
 app = QApplication(sys.argv)
