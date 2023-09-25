@@ -1,5 +1,5 @@
 # What is this project?
-This project allows you to submit a simple job application form. 
+This flask app allows you to use a simple job application form. 
     
 Here's a preview of the template:
 ![image](https://github.com/julienco03/webdev/assets/85078802/ea83a146-9201-4a11-ab0f-bc8eed8c31c0)
