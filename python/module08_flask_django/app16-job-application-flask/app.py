@@ -35,7 +35,6 @@ def index():
         email = request.form["email"]
         date_string = request.form["date"]
         date = datetime.strptime(date_string, "%Y-%m-%d").date()
-        print(date)
         occupation = request.form["occupation"]
 
         form = Form(first_name=first_name, last_name=last_name,
