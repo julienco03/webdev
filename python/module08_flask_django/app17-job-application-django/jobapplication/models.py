@@ -4,7 +4,7 @@ from django.db import models
 class Form(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
-    mail = models.EmailField(max_length=50)
+    email = models.EmailField(max_length=50)
     date = models.DateField()
     occupation = models.CharField(max_length=20)
 
