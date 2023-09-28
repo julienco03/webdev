@@ -9,6 +9,18 @@
 </head>
 <body>
     <h1>Restaurant Menu</h1>
-    <h3>{{ meals }}</h3>
+    {% for meal in meals %}
+        <h2>{{ meal.1 }}</h2>
+        {% for item in item_list %}
+            {% if item.category == meal.0 %}
+                {% if item.status == 1 %}
+                    <h3><del>{{ item.meal }}</del></h3>
+                {% else %}
+                    <h3>{{ item.meal }}</h3>
+                    <p>{{ item.description }}</p>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
 </body>
 </html>
