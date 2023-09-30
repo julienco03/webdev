@@ -4,12 +4,10 @@ require_once __DIR__ . '/inc/db-connect.php';
 require_once __DIR__ . '/inc/functions.php';
 
 $perPage = 2;
-$currentPage = 1;
-if (isset($_GET['page'])) {
-    $currentPage = @(int) $_GET['page'];
-    if ($currentPage <= 0) {
-        $currentPage = 1;
-    }
+
+$currentPage = @(int) ($_GET['page']) ?? 1;
+if ($currentPage <= 0) {
+    $currentPage = 1;
 }
 
 $stmtCount = $pdo->prepare('SELECT COUNT(*) AS `count` FROM `entries`');
